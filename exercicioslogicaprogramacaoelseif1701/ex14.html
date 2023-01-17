@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+`Faça um script para calcular quanto será gasto em uma viagem, onde o usuario informa a distancia em KM e o consumo do carro em KM/L e o programa calcula o valor da viagem.`
+*/
+      alert("Calculadora de viagem.");
+      let distancia = parseFloat(prompt("Informe a distância em KM. Exemplo: 80.5"));
+      let consumo = parseFloat(prompt("Informe o consumo médio do seu veículo"));
+      let precoCombustivel = parseFloat(prompt("Informe o consumo médio do seu veículo"));
+
+      let custoViagem = (distancia/consumo)*precoCombustivel;
+
+      document.write(
+        `O custo da sua viagem será de R$ ${custoViagem}.`
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //`Escreva um programa para ler 3 valores inteiros (considere que não serão lidos valores iguais) e escrevê-los em ordem crescente.`
+
+      let valor1 = parseInt(prompt("Informe um número"));
+      let valor2 = parseInt(prompt("Informe um número"));
+      let valor3 = parseInt(prompt("Informe um número"));
+      let valoresOrdenados = "";
+
+      if (valor1 == valor2) {
+        if (valor1 > valor3) {
+          valoresOrdenados += `${valor3},${valor1}`;
+        } else {
+          valoresOrdenados += `${valor1},${valor3}`;
+        }
+      }
+
+      if (valor1 == valor3) {
+        if (valor1 > valor2) {
+          valoresOrdenados += `${valor2},${valor1}`;
+        } else {
+          valoresOrdenados += `${valor1},${valor2}`;
+        }
+      }
+
+      if (valor2 == valor3) {
+        if (valor1 > valor2) {
+          valoresOrdenados += `${valor2},${valor1}`;
+        } else {
+          valoresOrdenados += `${valor1},${valor2}`;
+        }
+      }
+
+      if (valor1 < valor2 && valor1 < valor3) {
+        valoresOrdenados += valor1;
+        if (valor2 < valor3) {
+          valoresOrdenados += valor2;
+          valoresOrdenados += valor3;
+        } else {
+          valoresOrdenados += valor3;
+          valoresOrdenados += valor2;
+        }
+      }
+      if (valor2 < valor1 && valor2 < valor3) {
+        valoresOrdenados += valor2;
+        if (valor1 < valor3) {
+          valoresOrdenados += valor1;
+          valoresOrdenados += valor3;
+        } else {
+          valoresOrdenados += valor3;
+          valoresOrdenados += valor1;
+        }
+      }
+      if (valor3 < valor1 && valor3 < valor2) {
+        valoresOrdenados += valor3;
+        if (valor2 < valor1) {
+          valoresOrdenados += valor2;
+          valoresOrdenados += valor1;
+        } else {
+          valoresOrdenados += valor1;
+          valoresOrdenados += valor2;
+        }
+      }
+
+      document.write(valoresOrdenados);
+    </script>
+  </body>
+</html>
