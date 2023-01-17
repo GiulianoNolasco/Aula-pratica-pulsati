@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //`Faça um programa onde peça para o usuario informar 3 numeros, e depois mostre qual o MAIOR numero entre eles.`
+
+      let num01 = parseFloat(prompt("Informe um número!"));
+      let num02 = parseFloat(prompt("Informe um número!"));
+      let num03 = parseFloat(prompt("Informe um número!"));
+      let maiorNumero = num01;
+
+      if (num02 > maiorNumero) {
+        maiorNumero = num02;
+      }
+      if (num03 > maiorNumero) {
+        maiorNumero = num03;
+      }
+      document.write(`O maior número é o: ${maiorNumero}`);
+    </script>
+  </body>
+</html>

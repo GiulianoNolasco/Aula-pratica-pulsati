@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+`Faça um programa que peça os 3 lados de um triangulo e mostre qual o tipo: Equilátero, isoceles, Escaleno`
+
+`Equilatero: 3 lados iguais`
+`Isosceles: 2 lados iguais e 1 diferente`
+`Escaleno: 3 lados diferentes`
+*/
+
+      let lado01 = parseFloat(prompt("Informe um lado do triângulo"));
+      let lado02 = parseFloat(prompt("Informe um lado do triângulo"));
+      let lado03 = parseFloat(prompt("Informe um lado do triângulo"));
+      let tipo;
+
+      if (lado01 == lado02 && lado01 == lado03 && lado02 == lado03) {
+        tipo = "Equilatero: 3 lados iguais";
+      }
+      if (lado01 != lado02 && lado01 != lado03 && lado02 != lado03)  {
+        tipo = "Escaleno: 3 lados diferentes";
+      }
+      else    {
+        tipo = "Isosceles: 2 lados iguais e 1 diferente";
+      }
+      document.write(`O seu triângulo é ${tipo}`)
+
+    </script>
+  </body>
+</html>

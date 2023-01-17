@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //`Criar uma calculadora, onde o usuario informa 2 números e a operação matemática que ele quer e depois mostrar o resultado na tela.`
+      alert("ATENÇÃO! Calculadora, informe os dados a seguir!");
+      let num01 = parseFloat(prompt("Informe o primeiro número:"));
+      let operador = prompt("Informe o operador:");
+      let num02 = parseFloat(prompt("Informe o segundo número:"));
+
+      let resultado;
+
+      if (operador == "/" || operador == "%") {
+        resultado = num01 / num02;
+      } else if (operador == "+") {
+        resultado = num01 + num02;
+      } else if (operador == "-") {
+        resultado = num01 - num02;
+      } else if (operador == "*") {
+        resultado = num01 * num02;
+      } else {
+        resultado = "erro, operador inválido";
+      }
+      document.write(`O resultado da equação é: ${resultado}`);
+    </script>
+  </body>
+</html>

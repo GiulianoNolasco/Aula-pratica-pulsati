@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      `Peça para o Cliente escolher entre quatro pedidos sendo eles`
+
+      `Pizza = R$12,00`
+      `Pão de Queijo = R$ 4,00`
+      `Macarrão R$ 16,00`
+      `Pastel = R$ 4,50`
+
+      `Após a escolha pergunte quanto o cliente estará dando de valor ao caixa.`
+
+      `Ao final do programa calcule se o Cliente precisa de troco ou não e informe o valor do troco caso necesário.`
+      */
+
+      let pedido = parseInt(
+        prompt(
+          `Por gentileza informe o seu pedido
+          (Em forma de número conforme a seguir): 
+          1 - Pizza = R$12,00 
+          2 - Pão de Queijo = R$ 4,00 
+          3 - Macarrão R$ 16,00 
+          4 - Pastel = R$ 4,50`
+        )
+      );
+      let valorDoPagamento = parseFloat(
+        prompt("Qual o valor que será utilizado no pagamento?")
+      );
+      let produto1 = 12.0;
+      let nomeProduto1 = "Pizza";
+
+      let produto2 = 4.0;
+      let nomeProduto2 = "Pão de Queijo";
+
+      let produto3 = 16.0;
+      let nomeProduto3 = "Macarrão";
+
+      let produto4 = 4.5;
+      let nomeProduto4 = "Pastel";
+
+      let valorDoPedido;
+      let nomeDoPedidoEscolhido;
+      let precisaDeTroco;
+      let valorDoTroco;
+
+      if (pedido == 1) {
+        valorDoPedido = produto1;
+        nomeDoPedidoEscolhido = nomeProduto1;
+      }
+      if (pedido == 2) {
+        valorDoPedido = produto2;
+        nomeDoPedidoEscolhido = nomeProduto2;
+      }
+      if (pedido == 3) {
+        valorDoPedido = produto3;
+        nomeDoPedidoEscolhido = nomeProduto3;
+      }
+      if (pedido == 4) {
+        valorDoPedido = produto4;
+        nomeDoPedidoEscolhido = nomeProduto4;
+      }
+
+      if (valorDoPagamento > valorDoPedido) {
+        precisaDeTroco = "Sim";
+      } else if (valorDoPagamento == valorDoPedido) {
+        precisaDeTroco = "Não";
+      } else {
+        precisaDeTroco = "Valor do pagamento insuficiente!";
+      }
+
+      valorDoTroco = valorDoPagamento - valorDoPedido;
+
+      document.write(
+        `O pedido escolhido foi ${nomeDoPedidoEscolhido}. <br>
+         Valor da compra é de R$ ${valorDoPedido},        <br>
+          O valor do pagamento foi de R$ ${valorDoPagamento}.<br> 
+        Precisa de troco? ${precisaDeTroco}.<br> valor do troco R$ ${valorDoTroco}
+        `
+      );
+    </script>
+  </body>
+</html>
