@@ -16,12 +16,17 @@
 
       let numero = parseInt(prompt("Informe um número."));
       let expoente = parseInt(prompt("Informe o expoente."));
+      let array = []
 
-      let resultado = 0;
+      let resultado = 1;
       for (let index = 1; index <= expoente; index++) {
-        resultado = numero * numero;
+        array.push(numero);
       }
 
+      for (let i = 0; i < array.length; i++) {
+        resultado= resultado*array[i];
+        
+      }
       document.write(
         `O número ${numero} elevado a ${expoente} é ${resultado}`
       );

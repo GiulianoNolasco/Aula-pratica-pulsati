@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+           35. Escreva um programa que calcule a média de uma lista de
+           números com quantidade definida pelo usuário
+
+           */
+          
+      let numeros = [];
+
+      let tamanhoLista = parseInt(
+        prompt("Qual o tamanho da lista de números?.")
+      );
+      for (let index = 1; index <= tamanhoLista; index++) {
+        numeros.push(parseInt(prompt("Informe o número.")));
+      }
+
+      let soma = 0;
+      for (let index = 0; index < numeros.length; index++) {
+        soma += numeros[index];
+      }
+
+      let media = soma / numeros.length;
+
+      document.write(`
+      O tamanho da lista é ${tamanhoLista} números.<br>
+      A lista de números é esta: [${numeros}].<br>
+      A soma dos valores é: ${soma}.<br>
+      A média dos valores é: ${media}.<br>
+      `);
+
+    </script>
+  </body>
+</html>
