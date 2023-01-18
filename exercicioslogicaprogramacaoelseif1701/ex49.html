@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+49. Escreva um programa que calcule a potência de um número.
+
+      */
+
+      let numero = parseInt(prompt("Informe um número."));
+      let expoente = parseInt(prompt("Informe o expoente."));
+
+      let resultado = 0;
+      for (let index = 1; index <= expoente; index++) {
+        resultado = numero * numero;
+      }
+
+      document.write(
+        `O número ${numero} elevado a ${expoente} é ${resultado}`
+      );
+    </script>
+  </body>
+</html>

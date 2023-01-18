@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+41. Escreva um programa que verifique se um número é divisível por outro
+
+
+      */
+
+      let numero1 = prompt("informe um número.");
+      let numero2 = prompt("informe outro número no qual será dividido.");
+
+      let resultado;
+      if (numero1 % numero2 == 0) {
+        resultado = " Sim, é passível de divisão.";
+      } else {
+        resultado = " Não é passível de divisão.";
+      }
+
+      document.write(
+        `O ${numero1} pode ser dividido pelo ${numero2}? <br> ${resultado} `
+      );
+    </script>
+  </body>
+</html>

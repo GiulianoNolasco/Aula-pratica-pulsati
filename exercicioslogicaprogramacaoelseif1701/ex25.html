@@ -14,15 +14,14 @@
 
 */
       let numero = parseInt(prompt("Escreva um número"));
-      let resultado;
-      for (let i = 2; i < numero; i++)
-        if (numero % i === 0) {
-          resultado = false;
-        } else {
-          resultado = true;
-        }
+      let quantidadeDivisores = 0;
 
-      if (resultado) {
+      for (let i = 1; i <= numero; i++)
+        if (numero % i == 0) {
+          quantidadeDivisores++;
+        } 
+
+      if (quantidadeDivisores == 2) {
         document.write(`Você informou ${numero}, o seu número É primo`);
       } else {
         document.write(`Você informou ${numero}, o seu número NÃO é primo`);

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+37. Escreva um programa que verifique se todos os números são ou pares ou 
+impares de um array.
+
+      */
+      let numeros = [2,2,2,6,10,20,11];
+      let numerosPares = 0;
+      let numerosImpares = 0;
+
+      for (let i = 0; i < numeros.length; i++) {
+        if ((numeros[i] % 2) == 0) {
+          numerosPares++;
+        } else {
+          numerosImpares++;
+        }
+      }
+
+      resultado = "";
+
+      if ((numerosPares == numeros.length)) {
+        resultado = "Os números são todos pares";
+      }
+      else if ((numerosImpares == numeros.length)) {
+        resultado = "Os números são todos ímpares";
+      } else {
+        resultado = "Os números são mistos";
+      }
+
+      document.write(resultado,"<br> Total de pares: " +numerosPares + "<br>Total de Ímpares"+numerosImpares);
+    </script>
+  </body>
+</html>

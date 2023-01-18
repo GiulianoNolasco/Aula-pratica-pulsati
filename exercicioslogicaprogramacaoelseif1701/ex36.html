@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+36. Escreva um programa que ordene uma lista de números em ordem crescente.
+
+      */
+      let numeros = [45, 58, 698, 87, 1, 6, 5, 7];
+
+      numeros.sort(function (a, b) {
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+      });
+
+      document.write(numeros);
+    </script>
+  </body>
+</html>

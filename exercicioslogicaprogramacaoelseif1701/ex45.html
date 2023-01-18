@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+45. Escreva um programa que verifique quantos números são positivos 
+e quantos são negativos em um array.
+
+      */
+
+      let numeros = [10, -10, 10, 10, -10, 10, 10, -10];
+      let somaPositivos = 0;
+      let somaNegativos = 0;
+      let somaTotal = 0;
+
+      for (let i = 0; i < numeros.length; i++) {
+        if (numeros[i] > 0) {
+          somaPositivos += numeros[i];
+        } else {
+          somaNegativos += numeros[i];
+        }
+      }
+
+      document.write(`A Lista é: [${numeros}]<br> 
+      A soma dos números positivos é ${somaPositivos}<br>
+      A soma dos números negativos é ${somaNegativos}<br>
+ `);
+    </script>
+  </body>
+</html>

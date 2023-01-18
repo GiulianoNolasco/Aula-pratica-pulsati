@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+29. Utilize um laço "for" para encontrar a soma dos primeiros n números inteiros positivos e armazenar o resultado em uma variável chamada "soma".
+
+
+*/
+
+      let numeros = [-1, 14, 180, -87, -98, 10, 5];
+      let soma = 0;
+
+      for (let i = 0; i < numeros.length; i++) {
+        if (numeros[i] > 0) {
+          soma += numeros[i];
+        }
+      }
+      document.write(soma);
+      
+    </script>
+  </body>
+</html>

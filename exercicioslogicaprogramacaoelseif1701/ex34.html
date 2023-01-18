@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+34. Utilize um laço "for" para percorrer uma string e trocar todas as 
+letras "a" por "x" e imprimir a string modificada.
+
+*/
+      let palavraInformada = prompt("Informe uma palavra");
+
+      let palavraAlterada = "";
+
+      for (let i = 0; i <= palavraInformada.length; i++) {
+        if (palavraInformada[i] == 'a') {
+          palavraAlterada += 'x';
+        } else {
+          palavraAlterada += palavraInformada[i];
+        }
+      }
+      document.write(palavraAlterada);
+    </script>
+  </body>
+</html>
