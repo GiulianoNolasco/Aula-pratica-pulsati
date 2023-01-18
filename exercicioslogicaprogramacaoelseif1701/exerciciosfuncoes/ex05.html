@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      Crie um programa que pergunta ao usuário se ele deseja converter uma temperatura de grau Celsius para 
+      Farenheit ou vice-versa. Para cada opção, crie uma função. E depois mostre o resultado da conversão.
+      */
+
+      let temperatura = parseFloat(
+        prompt("Qual a temperatura atual? - valor, ex 50.87")
+      );
+      let tipoTemperatura = prompt(
+        "Qual o tipo da temperatura atual? - Kelvin (K), Celsius (C) e Fahrenheit (F)."
+      );
+      let tipoTemperaturaNova = prompt(
+        "Para qual temperatura deseja converter? - Kelvin (K), Celsius (C) e Fahrenheit (F)."
+      );
+
+      function converterTemperatura(temp, tipoT, tipoTN) {
+        let resultado = 0;
+        if (tipoT == "K" && tipoTN == "C") {
+          resultado = temp - 273.15;
+        }
+        if (tipoT == "K" && tipoTN == "F") {
+          resultado = ((temp - 273.15) * 9) / 5 + 32;
+        }
+        if (tipoT == "F" && tipoTN == "C") {
+          resultado = ((temp - 32) * 5) / 9;
+        }
+        if (tipoT == "F" && tipoTN == "K") {
+          (resultado = ((temp - 32) * 5) / 9 + 273), 15;
+        }
+        if (tipoT == "C" && tipoTN == "K") {
+          resultado = temp + 273.15;
+        }
+        if (tipoT == "C" && tipoTN == "F") {
+          resultado = (temp * 9) / 5 + 32;
+        }
+        Math.round(2).resultado
+        document.write(`A conversão de ${temp}º${tipoT} fica ${resultado}º${tipoTN}`)
+      }
+
+      converterTemperatura(temperatura, tipoTemperatura, tipoTemperaturaNova);
+    </script>
+  </body>
+</html>

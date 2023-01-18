@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      Crie uma função para imprimir uma quantidade de vezes para um numero N
+
+      1
+      2   2
+      3   3   3
+      .....
+      n   n   n   n   n   n...
+      */
+
+      let quantidadeAImprimir = parseInt(
+        prompt("até qual número você quer imprimir?")
+      );
+
+      function imprimir(quantidade) {
+        for (let i = 1; i <= quantidade; i++) {
+          for (let y = 1; y <= i; y++) {
+            document.write(i + " ");
+          }
+          document.write("<br>");
+        }
+      }
+
+      imprimir(quantidadeAImprimir);
+    </script>
+  </body>
+</html>

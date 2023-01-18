@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+Faça um programa que peça 10 números inteiros, calcule e mostre a quantidade de números pares e a 
+quantidade de números ímpares.
+
+          */
+
+      let numeros = [];
+      for (let index = 1; index <= 10; index++) {
+        numeros.push(parseInt(prompt("Informe um número.")));
+        
+      }
+      let numerosPares = 0;
+      let numerosImpares = 0;
+
+      for (let i = 0; i < numeros.length; i++) {
+        if ((numeros[i] % 2) == 0) {
+          numerosPares++;
+        } else {
+          numerosImpares++;
+        }
+      }
+
+      resultado = "";
+
+      if ((numerosPares == numeros.length)) {
+        resultado = "Os números são todos pares";
+      }
+      else if ((numerosImpares == numeros.length)) {
+        resultado = "Os números são todos ímpares";
+      } else {
+        resultado = "Os números são mistos";
+      }
+
+      document.write("Total de pares: " +numerosPares +".<br> Total de Ímpares: "+numerosImpares+".<br>");
+      document.write("Lista dos números: "+numeros);
+
+    </script>
+  </body>
+</html>

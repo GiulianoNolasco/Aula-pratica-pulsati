@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      Crie um programa onde o usuário informa 2 numeros e você mostra as operações de soma, subtração, multiplicação e divisão
+
+OBS: Criar uma Função unica, que recebe qual a operação via parametro
+e assim mostrar na tela.
+
+          */
+      let num01 = parseFloat(prompt("Informe o primeiro número"));
+      let num02 = parseFloat(prompt("Informe o segundo número"));
+
+      function operadores(n1, n2) {
+        let soma = n1 + n2;
+        let subtracao = n1 - n2;
+        let multiplicacao = n1 * n2;
+        let divisao = n1 / n2;
+        document.write(`${n1} + ${n2} = ${soma}.<br>`);
+        document.write(`${n1} - ${n2} = ${subtracao}.<br>`);
+        document.write(`${n1} * ${n2} = ${multiplicacao}.<br>`);
+        document.write(`${n1} / ${n2} = ${divisao}.<br>`);
+      }
+
+      operadores(num01,num02)
+    </script>
+  </body>
+</html>

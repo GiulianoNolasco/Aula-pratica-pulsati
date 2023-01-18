@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      O Departamento Estadual de Meteorologia lhe contratou para desenvolver um programa que leia as um
+       conjunto de 5 de temperaturas, e informe ao final a menor e a maior temperaturas informadas, 
+       bem como a média das temperaturas.
+
+          */
+
+      let quantidadeDeTemperaturas = 5;
+      let temperaturas = [];
+      let somaTemperaturas = 0;
+      let maiorTemperatura = 0;
+      let menorTemperatura = 10000;
+
+      for (let index = 0; index < quantidadeDeTemperaturas; index++) {
+        temperaturas.push(parseFloat(prompt("Informe uma temperatura.")));
+      }
+
+      for (let i = 0; i < temperaturas.length; i++) {
+        somaTemperaturas = somaTemperaturas + temperaturas[i];
+      }
+      let media = somaTemperaturas / quantidadeDeTemperaturas;
+
+      for (let i = 0; i < temperaturas.length; i++) {
+        temperaturas[i];
+        if (temperaturas[i] > maiorTemperatura) {
+          maiorTemperatura = temperaturas[i];
+        }
+        if (temperaturas[i] < menorTemperatura) {
+          menorTemperatura = temperaturas[i];
+        }
+      }
+
+      document.write(`As temperaturas informadas foram ${temperaturas}<br>
+      A menor temperatura é ${menorTemperatura}<br>
+      A maior temperatura é ${maiorTemperatura}<br>
+      A média das temperaturas é ${media}`);
+    </script>
+  </body>
+</html>

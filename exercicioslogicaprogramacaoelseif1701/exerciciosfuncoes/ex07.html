@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      Peça para o usuário informar seu salário, após isso peça para informar a quantidade de aumento de 0 até 100 (Porcentagem), 
+    Com uma função calcule quanto de aumento em Reais o funcionario terá e retorne o salario antigo o novo salario e o aumento 
+    que foi dado
+
+      */
+
+      let salarioInformado = parseFloat(
+        prompt("Por gentileza, informe o seu salário.")
+      );
+      let aumentoPorcentual = parseFloat(
+        prompt("Por gentileza, informe o % de aumento. Exemplo: 15")
+      );
+
+      function reajusteSalario(salario, reajuste) {
+        let salarioReajustado = salario * (1+(reajuste / 100));
+        let valorDoAumento = salarioReajustado - salario;
+
+        document.write(
+          `O salário atual é de R$ ${salario}.<br>
+          O percentual de reajuste aplicado foi de ${reajuste}%,<br>
+          O valor do aumento foi de R$ ${valorDoAumento}.<br>
+          O novo salário é de R$  ${salarioReajustado}`
+        );
+      }
+      reajusteSalario(salarioInformado, aumentoPorcentual);
+    </script>
+  </body>
+</html>

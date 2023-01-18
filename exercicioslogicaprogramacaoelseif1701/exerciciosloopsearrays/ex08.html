@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+Faça um programa que peça o valor do carro e o ano de lançamento e se o valor for menor que 20.000 
+ou o ano for menor que 2020. Pergunte de novo até ele informar um carro mais novo ou mais caro.
+
+          */
+
+      let valorDoCarro = 0;
+      let anoDeLancamento = 0;
+
+      do {
+        valorDoCarro = prompt("Informe o valor do veículo.");
+        anoDeLancamento = prompt("Informe o ano do veículo.");
+      } while (valorDoCarro < 20000 || anoDeLancamento < 2020);
+
+      document.write(`Valor do veículo = ${valorDoCarro}, Ano do veículo = ${anoDeLancamento}`);
+
+    </script>
+  </body>
+</html>

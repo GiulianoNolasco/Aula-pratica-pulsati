@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      Peça para o usuario informar qual mês ele faz aniversário, com uma função verifique se o numero do mes é par ou impar e quantos
+       meses faltam para acabar o ano
+
+      */
+
+      let mesAniversario = parseInt(
+        prompt("Em qual mês você faz aniversário. Exemplo Janeiro, informar: 1")
+      );
+
+      function analiseMesAniversario(mes) {
+        let mesParImpar = "";
+        let qtMesFimAno = 12 - mes;
+
+        if (mes % 2 == 0) {
+          mesParImpar = "par";
+        } else {
+          mesParImpar = "ímpar";
+        }
+
+        document.write(
+          `O mês do seu aniversário é ${mesParImpar}.<br>
+           Faltam ${qtMesFimAno} meses para o fim do ano.`
+        );
+      }
+      analiseMesAniversario(mesAniversario);
+    </script>
+  </body>
+</html>

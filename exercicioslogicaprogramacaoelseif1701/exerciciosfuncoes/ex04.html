@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      Peça para o usuário informar N numeros e adicione eles em uma lista depois com uma função verifique 
+      cada numero se ele é par e retorne ao final quantos numeros são pares e quantos são impares
+
+          */
+
+      let confirmacao = true;
+      let numeros = [];
+
+      while (confirmacao == true) {
+        numeros.push(parseInt(prompt("informe os números")));
+        confirmacao = confirm("Deseja continuar");
+      }
+
+      function verificarParImpar(array) {
+        let numerosPares = 0;
+        let numerosImpares = 0;
+
+        for (let i = 0; i < numeros.length; i++) {
+          if (numeros[i] % 2 == 0) {
+            numerosPares++;
+          } else {
+            numerosImpares++;
+          }
+        }
+
+        document.write(
+          "Total de pares: " +
+            numerosPares +
+            ".<br> Total de Ímpares: " +
+            numerosImpares +
+            ".<br>"
+        );
+        document.write("Lista dos números: " + numeros);
+      }
+      verificarParImpar(numeros);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      Numa eleição existem três candidatos. Faça um programa que peça o número
+       total de eleitores. Peça para cada eleitor votar e ao final mostrar o número de votos de cada candidato.
+
+          */
+      let mickey = 0;
+      let patoDonald = 0;
+      let minnie = 0;
+      let votosInvalidos = 0;
+
+      let totalDeVotantes = parseInt(
+        prompt("Informe a quantidade de eleitores.")
+      );
+
+      for (let index = 0; index < totalDeVotantes; index++) {
+        let voto = prompt(
+          "Informe o seu voto.\n Mickey = 1.\n Pato Donald = 2. \n Minnie = 3."
+        );
+        if ((voto == "1")) {
+          mickey++;
+        }
+        else if ((voto == "2")) {
+          patoDonald++;
+        }
+        else if ((voto == "3")) {
+          minnie++;
+        } else {
+          votosInvalidos++;
+        }
+      }
+
+      resultado = `O resultado das eleições foi: <br>
+      Total de votantes: ${totalDeVotantes} <br><br>
+      Mickey:${mickey}  <br>
+      Pato Donald:${patoDonald}  <br>
+      Minnie: ${minnie} <br>
+      Votos Inválidos: ${votosInvalidos} <br><br>
+`
+      document.write(resultado)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+Faça um programa que receba dois números inteiros e gere os números inteiros que estão no intervalo deles.
+
+
+          */
+
+      let numeroInicial = parseInt(prompt("digite o primeiro número."));
+      let numeroFinal = parseInt(prompt("digite o último número."));
+      document.write(`O número inicial é ${numeroInicial}<br>`)
+
+      for (let i = numeroInicial+1; i < numeroFinal; i++) {
+        document.write(i+ "<br>")
+      }
+      document.write(`O número final é ${numeroFinal}`)
+
+
+    </script>
+  </body>
+</html>
