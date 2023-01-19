@@ -21,14 +21,41 @@
 
       let lista = [3, 12, 16, 36];
       let tamanhoLista = lista.length;
+
       let multiplicacaoLista = 1;
-      for (let i = 0; i <= lista.length; i++) {
-       multiplicacaoLista = lista[i] * (lista[i+1]);
+
+      for (let i = 0; i < lista.length; i++) {
+        multiplicacaoLista = multiplicacaoLista * lista[i];
       }
 
-     // let resultado = Math.sqrt(3 * 12);
+      document.write(lista + "<br>");
+      document.write(tamanhoLista + "<br>");
       document.write(multiplicacaoLista);
-      document.write(resultado);
+
+
+  var count=1;
+
+  while(count<=tamanhoLista){
+   resultado *= count;
+   count++;
+  }
+
+
+
+      function fatorial(){
+  var numero = parseInt(document.getElementById('numero').value);
+  var resposta = document.getElementById('resposta');
+  var resultado=1;
+
+  while(count<=numero){
+   resultado *= count;
+   count++;
+  }
+
+  resposta.innerHTML =resultado;
+}
+Resultado:
+
 
     </script>
   </body>
