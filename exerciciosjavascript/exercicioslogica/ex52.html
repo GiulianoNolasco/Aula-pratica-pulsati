@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+    52. Escreva um programa que verifique se um número é divisível por outro
+
+      */
+      function verificadorDeDivisao() {
+        let num1 = parseInt(prompt("Informe o primeiro número."));
+        let num2 = parseInt(prompt("Informe o segundo número."));
+        let resultado = "";
+
+        if (num1 % num2 != 0) {
+          resultado = "NÃO pode ser dividido pelo número";
+        } else {
+          resultado = "PODE pode ser dividido pelo número";
+        }
+        document.write(`O número ${num1} ${resultado} ${num2}.`);
+      }
+      verificadorDeDivisao();
+    </script>
+  </body>
+</html>

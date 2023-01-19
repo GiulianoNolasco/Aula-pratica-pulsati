@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      53.Escreva um programa onde você peça N numeros e depois mostre qual o menor numero que estiver entre a posição 5 e 10
+
+      */
+      let numeros = [];
+      let tamanhoArray = parseInt(prompt("Informe o tamanho da lista."));
+      let posicaoInicial = parseInt(prompt("Informe a posicao Inicial"));
+      let posicaoFinal = parseInt(prompt("Informe a posicao Final"));
+
+      alert(`Você precisará informar ${tamanhoArray} números.`);
+
+      for (let i = 0; i < tamanhoArray; i++) {
+        numeros.push(parseInt(prompt(`Informe um número. ${i + 1} de${tamanhoArray}.`)));
+      }
+
+      let arraySelecionada = [];
+
+      for (let i = posicaoInicial - 1; i <= posicaoFinal - 1; i++) {
+        arraySelecionada.push(numeros[i]);
+      }
+
+      let menorNumero = 10000000;
+      for (let i = 0; i < arraySelecionada.length; i++) {
+        arraySelecionada[i];
+        if (arraySelecionada[i] < menorNumero) {
+          menorNumero = arraySelecionada[i];
+        }
+      }
+
+      document.write(`
+      A lista informada é ${numeros}.<br>
+      Dentre a posição ${posicaoInicial} até a posição ${posicaoFinal}, estão os números:${arraySelecionada}.<br>
+      O menor número da lista é o ${menorNumero}.
+      `);
+    </script>
+  </body>
+</html>

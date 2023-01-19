@@ -17,8 +17,24 @@
     18-23 Boa noite
 
       */
+      function saudacaoInicial() {
+        let nome = prompt("Olá, qual o seu nome?");
+        let horaInformada = parseInt(prompt("Favor informe a hora atual. (0-23horas)"));
 
-      
+        let saudacao = "";
+
+        if (horaInformada <= 11) {
+          saudacao = "Bom dia!";
+        }
+        else if (horaInformada >= 18) {
+          saudacao = "Boa noite!";
+        } else {
+          saudacao = "Boa tarde!";
+        }
+
+        document.write(`Olá ${nome}, ${saudacao}`);
+      }
+      saudacaoInicial();
     </script>
   </body>
 </html>

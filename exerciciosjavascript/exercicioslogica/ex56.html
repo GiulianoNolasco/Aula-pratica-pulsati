@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      56. Escreva um programa que encontre o número mais frequente em uma lista.
+
+      */
+      let lista = [];
+      let tamanhoLista = parseInt(prompt("Informe o tamanho da lista."));
+
+      for (let i = 0; i < tamanhoLista; i++) {
+        lista.push(Math.random().toFixed(1));
+      }
+
+      let maiorNumeroQueAparece = 0;
+      let quantasVezesaparece = 0;
+
+      for (let i = 0; i < lista.length; i++) {
+        let resultado = 0;
+        for (let y = 0; y < lista.length; y++) {
+          if (lista[i] == lista[y]) {
+            resultado++;
+            if (resultado > maiorNumeroQueAparece) {
+              maiorNumeroQueAparece = lista[i];
+              quantasVezesaparece = resultado;
+            }
+          }
+        }
+      }
+      if (quantasVezesaparece == 1) {
+        maiorNumeroQueAparece = "(ERRO -Nenhum Número repetido.)";
+        quantasVezesaparece = "(ERRO -Nenhum Número repetido.)";
+      }
+      document.write(`A Lista foi gerada com ${tamanhoLista} números.<br>
+      A lista gerada foi: ${lista}.<br>
+      O número que mais aparece na lista é o ${maiorNumeroQueAparece} .<br>
+      Ele aparece ${quantasVezesaparece} vezes.`);
+    </script>
+  </body>
+</html>

@@ -12,12 +12,22 @@
 
       Peça ao usuário uma quantidade de linhas e e outra de colunas, depois declare tal matriz, inicialize todos os elementos de 
       1 até 'linha x coluna'.
-
-
-
+      
       */
 
-      
+      function criarMatriz() {
+        let linhas = parseInt(prompt("Informe a quantidade de linhas."));
+        let colunas = parseInt(prompt("Informe a quantidade de colunas."));
+
+        for (let i = 1; i <= linhas; i++) {
+          for (let y = 1; y <= colunas; y++) {
+            document.write(y+" ");
+          }
+          document.write("<br>");
+        }
+      }
+
+      criarMatriz();
     </script>
   </body>
 </html>
