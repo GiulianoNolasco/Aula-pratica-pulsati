@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      64. Escreva um programa que verifique se uma string é um pangrama.
+
+      Um pangrama é uma frase que contém todas as letras de um determinado alfabeto.    
+
+      */
+      let frase = prompt("Informe uma frase.");
+
+      let letrasAlfabeto = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "x",
+        "z",
+      ];
+
+      let letrasFrase = [];
+
+      for (let i = 0; i <= frase.length; i++) {
+        letrasFrase.push(frase[i]);
+      }
+
+      let letrasFraseSelecionadas = [];
+
+      for (let i = 0; i <= letrasAlfabeto.length; i++) {
+        for (let y = 0; y <= letrasFrase.length; y++) {
+          if (letrasAlfabeto[i] == letrasFrase[y]) {
+            letrasFraseSelecionadas.push(letrasFrase[y]);
+          // letrasAlfabeto.splice(0, 1, "####"); - trava o navegador.
+          }
+        }
+      }
+
+      let resultado;
+
+      if (letrasAlfabeto.length == letrasFraseSelecionadas.length) {
+        resultado = "é um pangrama.";
+      } else {
+        resultado = "não é um pangrama.";
+      }
+
+      document.write(frase + "<br>");
+      document.write(letrasAlfabeto + "<br>");
+      document.write(letrasFrase + "<br>");
+      document.write(letrasFraseSelecionadas + "<br>");
+      document.write(resultado + "<br>");
+      document.write(letrasAlfabeto + "<br>");
+    </script>
+  </body>
+</html>

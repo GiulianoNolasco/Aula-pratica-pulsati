@@ -13,8 +13,14 @@
 58. Escreva um programa que calcule o número de dias entre duas datas.
 
             */
+      let dataAtual = parseInt(prompt("Informe a data inicial."));
+      let dataFutura = parseInt(prompt("Informe a data futura."));
 
-            
+      let qtDiasFaltam = dataFutura - dataAtual;
+      document.write(`
+      Hoje é dia ${dataAtual}.<br>
+      Para o dia ${dataFutura}, faltam ${qtDiasFaltam} dias.
+      `);
     </script>
   </body>
 </html>
