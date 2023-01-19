@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      
+      66. Escreva um programa que verifique se um número é uma potência de outro número.
+
+      */
+
+      let numero = parseInt(prompt("Informe um número."));
+      let expoente = parseInt(prompt("Informe o expoente."));
+      let respostaInformada = parseInt(prompt("Informe a resposta."));
+
+      let resultado = numero;
+
+      for (let i = 1; i < expoente; i++) {
+        parseInt((resultado = resultado * numero));
+      }
+      let resultadoFinal;
+      if (resultado == respostaInformada) {
+        resultadoFinal = "Correta";
+      } else {
+        resultadoFinal = "Incorreta";
+      }
+
+      document.write(`
+      A resposta ${respostaInformada} está ${resultadoFinal}.<br>
+      O número ${numero} elevado a ${expoente} é ${resultado}.`);
+    </script>
+  </body>
+</html>

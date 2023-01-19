@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      
+      65. Escreva um programa que calcule a soma dos números de uma lista dentro de um determinado intervalo. (de uma posicao escolhida ate a outra)
+
+      */
+
+      let lista = [];
+      let tamanhoLista = parseInt(prompt("Informe o tamanho da lista."));
+      let num;
+      for (let i = 0; i < tamanhoLista; i++) {
+        num = (Math.random() * 100).toFixed(0);
+        lista.push(num);
+      }
+      let numeroInicial = parseInt(prompt("Qual número inicial?."));
+      let numeroFinal = parseInt(prompt("Qual número final?."));
+
+      let soma = 0;
+
+      for (let i = numeroInicial - 1; i <= numeroFinal - 1; i++) {
+        soma = soma + parseInt(lista[i]);
+      }
+
+      document.write(`
+      A lista gerada (${tamanhoLista} números) é:<br>
+      ${lista}<br>
+      A soma dos números entre as posições ${numeroInicial} e ${numeroFinal} é ${soma}. <br>
+      `);
+    </script>
+  </body>
+</html>

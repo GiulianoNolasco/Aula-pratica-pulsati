@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      
+      67. Escreva um programa que calcule a média geométrica de uma lista de números.
+      https://brasilescola.uol.com.br/matematica/media-geometrica.htm
+      https://pt.symbolab.com/solver/exponential-equation-calculator/3%5E%7B7%7D?or=input
+      
+      raiz da multiplicacao de todos os numeros (Raiz de quantidade dos numeros )
+      3,12,16,36 = 12
+
+      */
+
+      let lista = [3, 12, 16, 36];
+      let tamanhoLista = lista.length;
+      let multiplicacaoLista = 1;
+      for (let i = 0; i <= lista.length; i++) {
+       multiplicacaoLista = lista[i] * (lista[i+1]);
+      }
+
+     // let resultado = Math.sqrt(3 * 12);
+      document.write(multiplicacaoLista);
+      document.write(resultado);
+
+    </script>
+  </body>
+</html>
