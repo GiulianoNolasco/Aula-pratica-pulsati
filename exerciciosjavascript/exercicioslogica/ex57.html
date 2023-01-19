@@ -8,12 +8,52 @@
   </head>
   <body>
     <script>
-      /*
+            /*
 
-      57. Escreva um programa que verifique se uma string é uma anagrama.
+            57. Escreva um programa que verifique se uma string é uma anagrama.
 
-      */
-     
+            */
+
+      let palavra1 = prompt("Informe a primeira palavra.");
+      let arrayPalavra1 = [];
+      for (let i = 0; i < palavra1.length; i++) {
+        arrayPalavra1.push(palavra1[i]);
+      }
+      arrayPalavra1.sort();
+
+      let palavra2 = prompt("Informe a segunda palavra.");
+      let arrayPalavra2 = [];
+      for (let i = 0; i < palavra2.length; i++) {
+        arrayPalavra2.push(palavra2[i]);
+      }
+      arrayPalavra2.sort();
+
+      let palavraEUmDiagrama;
+
+      for (var i = 0; i < arrayPalavra1.length; i++) {
+        if (arrayPalavra1[i] == arrayPalavra2[i]) {
+          palavraEUmDiagrama = true;
+        } else {
+          palavraEUmDiagrama = false;
+          break;
+        }
+      }
+      if (arrayPalavra1.length != arrayPalavra2.length) {
+        palavraEUmDiagrama = false;
+      }
+      let resultado;
+      if (palavraEUmDiagrama) {
+        resultado = "são anagramas";
+      } else {
+        resultado = "não são anagramas";
+      }
+
+      document.write(`
+            A palavra 1 informada foi ${palavra1}. <br>
+            A palavra 2 informada foi ${palavra2}. <br>
+            As palavras ${resultado}. <br>
+            `);
+
     </script>
   </body>
 </html>
