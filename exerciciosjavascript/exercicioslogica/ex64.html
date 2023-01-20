@@ -14,7 +14,6 @@
 
       Um pangrama é uma frase que contém todas as letras de um determinado alfabeto.    
       Quem traz CD, LP, fax, engov e whisky JB? (29 letras)
-      Quem traz CD, LP, fax, engov e whisky JB? (29 letras)
       Jane quer LP, fax, CD, giz, TV e bom whisky.[2] (30 letras)
       TV faz quengo explodir com whisky JB. (30 letras)
       Vejo xá gritando que fez show sem playback. (35 letras)
@@ -24,7 +23,7 @@
       Bancos fúteis pagavam-lhe queijo, whisky e xadrez. (41 letras)
 
       */
-      let frase = prompt("Informe uma frase.");
+      let frase = prompt("Informe uma frase.").toLowerCase();
 
       let letrasAlfabeto = [
         "a",
@@ -51,31 +50,7 @@
         "x",
         "z",
       ];
-      let letrasAlfabetoMaiusculas = [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "X",
-        "Z",
-      ];
+       
       let letrasFrase = [];
 
       for (let i = 0; i <= frase.length; i++) {
@@ -88,14 +63,9 @@
       for (let i = 0; i < letrasAlfabeto.length; i++) {
         for (let y = 0; y <= letrasFrase.length; y++) {
           if (
-            letrasAlfabeto[i] == letrasFrase[y] ||
-            letrasAlfabetoMaiusculas[i] == letrasFrase[y]
-          ) {
+            letrasAlfabeto[i] == letrasFrase[y]           ) {
             letrasFraseSelecionadas.push(letrasFrase[y]);
             break;
-            /*for (let z = 0; z < letrasAlfabeto.length; z++) {
-              letrasAlfabeto[z].replace(/letrasAlfabeto[i]/, "1");
-            }*/
           }
         }
       }
@@ -103,31 +73,20 @@
       let resultado;
 
       if (letrasAlfabeto.length == letrasFraseSelecionadas.length) {
-        resultado = "é um pangrama.";
+        resultado = "É um pangrama.";
       } else {
-        resultado = "não é um pangrama.";
+        resultado = "NÃO é um pangrama.";
       }
 
       document.write(`
       A frase informada foi:<br>
-      ${frase}<br>
+      (${frase})<br>
       A frase ${resultado}<br><br>
+      Alfabeto considerado X Letras encontradas:<br>
+      ${letrasAlfabeto}. ${letrasAlfabeto.length}<br>
+      ${letrasFraseSelecionadas}. ${letrasFraseSelecionadas.length}<br>
       `);
-      document.write(letrasAlfabetoMaiusculas + "<br>");
-      document.write(letrasAlfabetoMaiusculas.length + "<br>");
-      document.write(letrasFraseSelecionadas + "<br>");
-      document.write(letrasFraseSelecionadas.length + "<br>");
-
-      /* document.write(frase + "<br>");
-      document.write(letrasAlfabeto + "<br>");
-      document.write(letrasAlfabetoMaiusculas + "<br>");
-      document.write(letrasFrase + "<br>");
-      document.write(letrasFraseSelecionadas + "<br>");
-      document.write(letrasFraseSelecionadas.length + "<br>");
-      document.write(letrasAlfabetoMaiusculas.length + "<br>");
-      document.write(letrasAlfabeto.length + "<br>");
-      document.write(resultado + "<br>");
-      document.write(letrasAlfabeto + "<br>");*/
+      
     </script>
   </body>
 </html>

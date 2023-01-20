@@ -28,35 +28,40 @@
         multiplicacaoLista = multiplicacaoLista * lista[i];
       }
 
-      document.write(lista + "<br>");
-      document.write(tamanhoLista + "<br>");
-      document.write(multiplicacaoLista);
+      let indicador = 1;
+      let numeroFatorial = 0;
+      for (let i = 1; i < multiplicacaoLista; i++) {
+        indicador = i;
+        for (let y = 1; y < tamanhoLista; y++) {
+          indicador = indicador * i;
+        }
+
+        if (indicador == multiplicacaoLista) {
+          numeroFatorial = i;
+          break;
+        }
+        if (indicador > multiplicacaoLista) {
+          numeroFatorial = "Indefinido";
+          break;
+        }
+      }
+
+      document.write(`
+      A lista atual é a [${lista}] <br>
+      O tamanho da lista  é  [${tamanhoLista}] <br>
+      A média geométrica da lista é  ${numeroFatorial} <br>
+      <br>
+      Resolução: Raiz (quantidade de números) da lista de números.<br>
+      _________________.<br>
+      ${tamanhoLista}√${lista}|.<br>
+      [${lista}] multiplicado entre si =  ${multiplicacaoLista}. <br>
+      O fatorial de ${multiplicacaoLista} é ${numeroFatorial}, ou seja:<br>
+       ${numeroFatorial} elevado a ${tamanhoLista} anula a raiz ${tamanhoLista}º sobre os números.<br>
+       _________________.<br>
+       ${tamanhoLista}√${numeroFatorial}º[${tamanhoLista}]|.<br>
 
 
-/*
-  var count=1;
-
-  while(count<=tamanhoLista){
-   resultado *= count;
-   count++;
-  }
-
-
-
-      function fatorial(){
-  var numero = parseInt(document.getElementById('numero').value);
-  var resposta = document.getElementById('resposta');
-  var resultado=1;
-
-  while(count<=numero){
-   resultado *= count;
-   count++;
-  }
-
-  resposta.innerHTML =resultado;
-}
-Resultado:
-*/
+      `);
 
     </script>
   </body>
