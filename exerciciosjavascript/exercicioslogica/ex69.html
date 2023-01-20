@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+          
+ 69. Escreva um programa que implemente o algoritmo de ordenação Quick Sort. 
+
+
+            */
+
+      let array = [7, 4, 457, 3, 69, 100, 6, 47, 1, 0, 99];
+
+      document.write(array + "<br>");
+
+      let estaEmOrdem = false;
+
+      for (let y = 0; y < array.length; y++) {
+        if (array[y] > array[y + 1]) {
+          for (let i = 0; i < array.length; i++) {
+            if (array[i] > array[i + 1]) {
+              [array[i + 1], array[i]] = [array[i], array[i + 1]];
+            }
+          }
+          y = -1;
+        }
+      }
+
+      document.write(array + "<br>");
+
+    </script>
+  </body>
+</html>
