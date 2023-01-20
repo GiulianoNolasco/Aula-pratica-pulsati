@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      
+      74. Escreva um programa que encontre a soma dos valores de uma matriz diagonal principal. 
+
+      */
+
+      let matrizTeste = [
+        [10, 2, 6, 8],
+        [2, 10, 6, 8],
+        [8, 2, 10, 8],
+        [6, 2, 6, 10],
+      ];
+
+      let soma = 0;
+      let i = -1;
+      let valoresMDP = [];
+
+      matrizTeste.forEach(function (num) {
+        i = i + 1;
+        document.write(num + "<br>");
+        for (i; i < num.length; i++) {
+          soma += parseInt(num[i]);
+          valoresMDP.push(num[i]);
+          break;
+        }
+      });
+
+      document.write(`<br>
+      Os valores da matriz diagonal principal são: <br>
+      ${valoresMDP}<br>
+      A soma destes valores é:${soma}`);
+    </script>
+  </body>
+</html>

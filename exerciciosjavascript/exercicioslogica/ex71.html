@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      
+      71. Escreva um programa que implemente o algoritmo de criptografia..
+
+      */
+
+      let senha = prompt("Informe uma senha alfabetica.").toLowerCase();
+
+      let letrasAlfabeto = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "x",
+        "z",
+      ];
+
+      let criptografiaBase = [
+        "2",
+        "7",
+        "3",
+        "@",
+        "4",
+        ")",
+        "{",
+        "6",
+        ".",
+        "*",
+        "1",
+        "-",
+        "}",
+        "=",
+        "0",
+        "q",
+        "#",
+        "9",
+        "$",
+        "+",
+        "/",
+        "&",
+        "!",
+      ];
+
+      let senhaEmArray = [];
+
+      for (let i = 0; i <= senha.length; i++) {
+        senha[i];
+        senhaEmArray.push(senha[i]);
+      }
+
+      let senhaCriptografadaArray = [];
+      let senhaCriptografada;
+      let indice = 0;
+      let valor = "";
+
+      for (let i = 0; i < senhaEmArray.length; i++) {
+        for (let y = 0; y < letrasAlfabeto.length; y++) {
+          if (senhaEmArray[i] == letrasAlfabeto[y]) {
+            valor = letrasAlfabeto[y];
+            indice = letrasAlfabeto.indexOf(valor);
+            senhaCriptografadaArray.push(criptografiaBase[indice]);
+            break;
+          }
+        }
+      }
+      
+      document.write(senhaCriptografadaArray);
+    </script>
+  </body>
+</html>

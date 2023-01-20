@@ -13,8 +13,37 @@
             68. Escreva um programa que implemente o algoritmo de ordenação Merge Sort.
 
             */
+      // codigo https://www.freecodecamp.org/portuguese/news/algoritmos-de-ordenacao-explicados-com-exemplos-em-python-java-e-c/#:~:text=Quick%20sort%20%C3%A9%20um%20eficiente,array%20atual%20em%20dois%20subarrays.
 
+      const list = [23, 4, 42, 15, 16, 8, 3];
 
+      const mergeSort = (list) => {
+        if (list.length <= 1) return list;
+        const middle = list.length / 2;
+        const left = list.slice(0, middle);
+        const right = list.slice(middle, list.length);
+        return merge(mergeSort(left), mergeSort(right));
+      };
+
+      const merge = (left, right) => {
+        var result = [];
+        while (left.length || right.length) {
+          if (left.length && right.length) {
+            if (left[0] < right[0]) {
+              result.push(left.shift());
+            } else {
+              result.push(right.shift());
+            }
+          } else if (left.length) {
+            result.push(left.shift());
+          } else {
+            result.push(right.shift());
+          }
+        }
+        return result;
+      };
+
+      document.write(mergeSort(list));
     </script>
   </body>
 </html>

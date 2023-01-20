@@ -10,33 +10,46 @@
     <script>
       /*
 
-
       70.Escreva um programa que implemente o algoritmo de busca binária em uma lista ordenada.
       https://pt.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search#:~:text=A%20busca%20bin%C3%A1ria%20%C3%A9%20um,localiza%C3%A7%C3%B5es%20poss%C3%ADveis%20a%20apenas%20uma.
 
+      */
 
-                  */
-      let numero;
-      let array = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
-        39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-      ];
+      let array = [];
+      let contagem = 0;
+      let numeroAdvinhar = (Math.random() * 100).toFixed(0);
 
-      let min = 0;
-      let max = array.length;
-
-      let ehMenor = false;
-
-      let numeroAdvinhar = 19;
+      for (let i = 1; i <= 100; i++) {
+        contagem = contagem + i;
+        array.push(i);
+      }
 
       let tentativaDeAcerto = 0;
       let limiteExclusao;
+
+      function atualizarArrayAbaixo(tentativaDA) {
+        limite = array.indexOf(tentativaDA);
+        for (let i = 0; i <= limite; i++) {
+          array.splice(0, 1);
+        }
+        alert(
+          `O número a ser advinhado é maior que ${tentativaDA}. \n ${array}  `
+        );
+      }
+
+      function atualizarArrayAcima(tentativaDA) {
+        limite = array.indexOf(tentativaDA);
+        for (let i = array.length; i >= limite; i--) {
+          array.splice(limite, 1);
+        }
+        alert(
+          `O número a ser advinhado é menor que ${tentativaDA}. \n ${array} `
+        );
+      }
+
       while (tentativaDeAcerto != numeroAdvinhar) {
         tentativaDeAcerto = parseInt(
-          prompt(
-            "Informe um número, tente acertar o número escolhido.\n" + array
-          )
+          prompt("Tente acertar o número escolhido.\n" + array)
         );
         if (tentativaDeAcerto == numeroAdvinhar) {
           document.write(
@@ -45,22 +58,10 @@
           break;
         } else {
           if (tentativaDeAcerto < numeroAdvinhar) {
-            limite = array.indexOf(tentativaDeAcerto);
-            for (let i = 0; i <= limite; i++) {
-              array.splice(0, 1);
-            }
-            alert(
-              `O número a ser advinhado é maior que ${tentativaDeAcerto}. \n ${array}  `
-            );
+            atualizarArrayAbaixo(tentativaDeAcerto);
           }
           if (tentativaDeAcerto > numeroAdvinhar) {
-            limite = array.indexOf(tentativaDeAcerto);
-            for (let i = array.length; i >= limite; i--) {
-              array.splice(limite, 1);
-            }
-            alert(
-              `O número a ser advinhado é menor que ${tentativaDeAcerto}. \n ${array} `
-            );
+            atualizarArrayAcima(tentativaDeAcerto);
           }
         }
       }
