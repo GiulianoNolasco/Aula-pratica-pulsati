@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      
+      75. Escreva um programa que encontre a soma dos valores de uma matriz diagonal secundária. 
+
+      */
+
+      let matrizTeste = [
+        [10, 2, 6, 10],
+        [2, 10, 1, 8],
+        [8, 1, 10, 8],
+        [10, 2, 6, 10],
+      ];
+      let i = 0;
+
+      matrizTeste.forEach(function (n1) {
+        i = n1.length;
+      });
+      
+      let soma = 0;
+      let valoresMDP = [];
+
+      matrizTeste.forEach(function (num) {
+        i = i - 1;
+        document.write(num + "<br>");
+        for (i; i < num.length; i++) {
+          soma += parseInt(num[i]);
+          valoresMDP.push(num[i]);
+          break;
+        }
+      });
+
+      document.write(`<br>
+      Os valores da matriz diagonal principal são: <br>
+      ${valoresMDP}<br>
+      A soma destes valores é:${soma}`);
+    </script>
+  </body>
+</html>

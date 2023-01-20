@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      76. Escreva um programa que encontre a soma dos valores de cada linha de uma matriz. 
+
+      */
+
+      let matrizTeste = [
+        [1, 1, 1, 1],
+        [2, 2, 2, 2],
+        [3, 3, 3, 3],
+        [4, 4, 4, 4],
+      ];
+      let somaLinha1 = 0;
+      let somaLinha2 = 0;
+      let somaLinha3 = 0;
+      let somaLinha4 = 0;
+      let variavel = 0;
+
+      matrizTeste.forEach(function (num) {
+        variavel++;
+        for (let i = 0; i < num.length; i++) {
+          if (variavel == 1) {
+            somaLinha1 += num[i];
+          }
+          if (variavel == 2) {
+            somaLinha2 += num[i];
+          }
+          if (variavel == 3) {
+            somaLinha3 += num[i];
+          }
+          if (variavel == 4) {
+            somaLinha4 += num[i];
+          }
+        }
+      });
+
+      document.write(`<br>
+      Os valores da matriz diagonal principal são: <br>
+      ${matrizTeste}<br>
+      A soma dos valores na linha 1 é:${somaLinha2}
+      A soma dos valores na linha 2 é:${somaLinha2}
+      A soma dos valores na linha 3 é:${somaLinha3}
+      A soma dos valores na linha 4 é:${somaLinha4}`);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      78. Escreva um programa que calcule a média dos valores de uma matriz.
+      
+      */
+
+      let matrizTeste = [
+        [1, 2, 3, 4],
+        [1, 2, 3, 4],
+        [1, 2, 3, 4],
+        [1, 2, 3, 4],
+      ];
+      let somaTotal = 0;
+      let tamanhoMatriz = 0;
+
+      matrizTeste.forEach(function (num) {
+        for (let i = 0; i < num.length; i++) {
+          somaTotal += num[i];
+          tamanhoMatriz++;
+        }
+      });
+      let media = somaTotal / tamanhoMatriz;
+
+      document.write(`
+      Os valores da matriz diagonal principal são: <br>
+      ${matrizTeste}<br>
+      A soma total da matriz é :${somaTotal}<br>
+      A quantidade de itens na matriz é:${tamanhoMatriz}<br>
+      A média dos valores na matriz é:${media}<br>
+      `);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+       80. Escreva um programa que calcule a média dos valores de cada coluna de uma matriz.
+
+
+      */
+
+      let matrizTeste = [
+        [1, 2, 3, 46],
+        [10, 2, 57, 874],
+        [10, 2, 3, 43],
+        [1, 2, 35, 4],
+      ];
+      let somaColuna1 = 0;
+      let somaColuna2 = 0;
+      let somaColuna3 = 0;
+      let somaColuna4 = 0;
+      let quantidadeVarPorLinha = 0;
+
+      matrizTeste.forEach(function (num) {
+        quantidadeVarPorLinha = num.length;
+
+        for (let i = 0; i < num.length; i++) {
+          somaColuna1 += num[i];
+          i++;
+          somaColuna2 += num[i];
+          i++;
+          somaColuna3 += num[i];
+          i++;
+          somaColuna4 += num[i];
+          i++;
+        }
+      });
+
+      let mediaColuna1 = somaColuna1 / quantidadeVarPorLinha;
+      let mediaColuna2 = somaColuna2 / quantidadeVarPorLinha;
+      let mediaColuna3 = somaColuna3 / quantidadeVarPorLinha;
+      let mediaColuna4 = somaColuna4 / quantidadeVarPorLinha;
+
+      document.write(`
+      Os valores da matriz diagonal principal são: <br>
+      ${matrizTeste}<br>
+      A média da coluna 1 é :${mediaColuna1}<br>
+      A média da coluna 2 é :${mediaColuna2}<br>
+      A média da coluna 3 é :${mediaColuna3}<br>
+      A média da coluna 4 é :${mediaColuna4}`);
+    </script>
+  </body>
+</html>

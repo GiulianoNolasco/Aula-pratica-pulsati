@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      77. Escreva um programa que encontre a soma dos valores de cada coluna de uma matriz.
+
+      */
+
+      let matrizTeste = [
+        [1, 2, 3, 4],
+        [1, 2, 3, 4],
+        [1, 2, 3, 4],
+        [1, 2, 3, 4],
+      ];
+      let somaColuna1 = 0;
+      let somaColuna2 = 0;
+      let somaColuna3 = 0;
+      let somaColuna4 = 0;
+
+      matrizTeste.forEach(function (num) {
+        for (let i = 0; i < num.length; i++) {
+          somaColuna1 += num[i];
+          i++;
+          somaColuna2 += num[i];
+          i++;
+          somaColuna3 += num[i];
+          i++;
+          somaColuna4 += num[i];
+          i++;
+        }
+      });
+
+      document.write(`
+      Os valores da matriz diagonal principal são: <br>
+      ${matrizTeste}<br>
+      A soma da coluna 1 é :${somaColuna1}<br>
+      A soma da coluna 2 é :${somaColuna2}<br>
+      A soma da coluna 3 é :${somaColuna3}<br>
+      A soma da coluna 4 é :${somaColuna4}`);
+      
+    </script>
+  </body>
+</html>

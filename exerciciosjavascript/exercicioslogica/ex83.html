@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      83. Escreva um programa que encontre o menor valor em uma lista e o seu índice.
+
+      */
+
+      let lista = [58, 5, 1, 5, 4, 35, 6, 7, 0, 5, 1, 6, 6, 4];
+
+      let menorNumero = 99999999999999;
+      let indiceMenorNumero;
+
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i] < menorNumero) {
+          menorNumero = lista[i];
+          indiceMenorNumero = lista.indexOf(lista[i]);
+        }
+      }
+      document.write(menorNumero + "<br>");
+      document.write(indiceMenorNumero);
+      
+    </script>
+  </body>
+</html>

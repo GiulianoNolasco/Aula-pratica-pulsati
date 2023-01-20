@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      79.Escreva um programa que calcule a média dos valores de cada linha de uma matriz.
+
+      */
+
+      let matrizTeste = [
+        [1, 1, 2, 2],
+        [2, 2, 2, 2],
+        [3, 3, 3, 3],
+        [10, 4, 7, 4],
+      ];
+      let somaLinha1 = 0;
+      let somaLinha2 = 0;
+      let somaLinha3 = 0;
+      let somaLinha4 = 0;
+      let variavel = 0;
+
+      document.write("Os valores da matriz diagonal principal são: <br>");
+
+      let quantidadeVarPorLinha = 0;
+      matrizTeste.forEach(function (num) {
+        document.write(num + "<br>");
+        variavel++;
+        quantidadeVarPorLinha = num.length;
+        for (let i = 0; i < num.length; i++) {
+          if (variavel == 1) {
+            somaLinha1 += num[i];
+          }
+          if (variavel == 2) {
+            somaLinha2 += num[i];
+          }
+          if (variavel == 3) {
+            somaLinha3 += num[i];
+          }
+          if (variavel == 4) {
+            somaLinha4 += num[i];
+          }
+        }
+      });
+
+      let mediaLinha1 = somaLinha1 / quantidadeVarPorLinha;
+      let mediaLinha2 = somaLinha2 / quantidadeVarPorLinha;
+      let mediaLinha3 = somaLinha3 / quantidadeVarPorLinha;
+      let mediaLinha4 = somaLinha4 / quantidadeVarPorLinha;
+
+      document.write(`<br>
+      A média dos valores na linha 1 é: ${mediaLinha1}<br>
+      A média dos valores na linha 2 é: ${mediaLinha2}<br>
+      A média dos valores na linha 3 é: ${mediaLinha3}<br>
+      A média dos valores na linha 4 é: ${mediaLinha4}`);
+    </script>
+  </body>
+</html>

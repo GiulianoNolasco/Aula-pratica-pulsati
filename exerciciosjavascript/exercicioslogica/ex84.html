@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      84. Escreva um programa que encontre o maior valor em uma lista e o seu índice. 
+
+      */
+
+      let lista = [58, 5, 1, 5, 4, 35, 6, 7, 0547, 5, 1, 478, 6, 4];
+
+      let maiorNumero = 0;
+      let indiceMaiorNumero;
+
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i] > maiorNumero) {
+          maiorNumero = lista[i];
+          indiceMaiorNumero = lista.indexOf(lista[i]);
+        }
+      }
+      document.write(maiorNumero+"<br>");
+      document.write(indiceMaiorNumero);
+    </script>
+  </body>
+</html>
