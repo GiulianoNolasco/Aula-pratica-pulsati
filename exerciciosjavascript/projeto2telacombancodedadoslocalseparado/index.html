@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banco de dados local</title>
+    <script src="main.js"></script>
+    <script src="storage.js"></script>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <script>
+      function Contador() {
+        let soma =0;
+        /*
+        return soma =   localStorage.getItem((iten) => {
+          for (let i = 0; i < iten.getItem; i++) {
+            soma += [i];
+          }
+        });*/
+      }
+      
+      document.body.innerHTML = "<h1> Soma pontuação: " + Contador() + "</h1>";
+    </script>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Pontuação</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div>
+      <button onclick="add()">Novo</button>
+    </div>
+  </body>
+</html>
