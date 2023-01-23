@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+
+      Desafio Crie um programa que peça para o usuário informar uma sequencia de numeros, 
+      e depois pegue o maior numero da lista divida por 2 e verifique se esse número existe na lista de valores informados
+      
+      */
+      let lista = [];
+      let numeroAdicionar = 0;
+      let stop = true;
+
+      do {
+        lista.push(parseInt(prompt("Informe uma sequência de números")));
+        stop = confirm("Deseja continuar?");
+      } while (stop == true);
+
+      let maiorNumero = 0;
+
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i] > maiorNumero) {
+          maiorNumero = lista[i];
+        }
+      }
+      let numeroASerEncontrado = maiorNumero / 2;
+      let resultado = "";
+      let posicao;
+
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i] == numeroASerEncontrado) {
+          resultado = "Está na lista";
+          posicao = lista.indexOf(numeroASerEncontrado);
+          break;
+        } else {
+          resultado = "NÃO está na lista";
+          posicao = "Não localizado";
+        }
+      }
+      document.write(`
+      A lista informada foi a: ${lista}.<br>
+      O maior número da lista é o ${maiorNumero}. <br>
+      A metade do maior número é ${numeroASerEncontrado}.<br>
+      O número ${numeroASerEncontrado}, ${resultado}.<br>
+      Posição do número: ${posicao}.
+`);
+    </script>
+  </body>
+</html>
