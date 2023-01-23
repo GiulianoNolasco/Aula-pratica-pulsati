@@ -10,11 +10,37 @@
     <script>
       /*
 
-       81. Escreva um programa que calcule a variância dos valores de uma matriz. 
-
+     81. Escreva um programa que calcule a variância dos valores de uma matriz. 
+      referência:https://acervolima.com/calcule-a-media-variancia-e-desvio-padrao-em-python-usando-numpy/
 
       */
 
+      let matriz = [
+        [2, 4, 4, 4],
+        [5, 5, 7, 9],
+      ];
+
+      soma = 0;
+      let tamanhoMatriz = 0;
+
+      matriz.forEach(function (num) {
+        for (let i = 0; i < num.length; i++) {
+          soma += num[i];
+          tamanhoMatriz++;
+        }
+      });
+
+      media = soma / tamanhoMatriz;
+      let variancia = 0;
+
+      matriz.forEach(function (num) {
+        for (let i = 0; i < num.length; i++) {
+          variancia += Math.pow(num[i] - media, 2);
+        }
+      });
+
+      variancia = variancia / tamanhoMatriz;
+      document.write(variancia);
     </script>
   </body>
 </html>

@@ -10,11 +10,87 @@
     <script>
       /*
 
-82. Escreva um programa que calcule a variância dos valores de cada linha de uma matriz.
+      82. Escreva um programa que calcule a variância dos valores de cada linha de uma matriz.
 
 
-      */
+            */
 
+      let matrizTeste = [
+        [8, 4, 57, 4],
+        [5, 5, 2, 2],
+        [3, 3, 346, 3],
+        [10, 40, 7, 4],
+      ];
+
+      let somaLinha1 = 0.0;
+      let somaLinha2 = 0.0;
+      let somaLinha3 = 0.0;
+      let somaLinha4 = 0.0;
+      let quantidadeVarPorLinha = 0;
+
+      let variavel = 0;
+
+      matrizTeste.forEach(function (num) {
+        variavel++;
+        quantidadeVarPorLinha = num.length;
+
+        for (let i = 0; i < num.length; i++) {
+          if (variavel == 1) {
+            somaLinha1 += num[i];
+          }
+          if (variavel == 2) {
+            somaLinha2 += num[i];
+          }
+          if (variavel == 3) {
+            somaLinha3 += num[i];
+          }
+          if (variavel == 4) {
+            somaLinha4 += num[i];
+          }
+        }
+      });
+
+      let mediaLinha1 = somaLinha1 / quantidadeVarPorLinha;
+      let mediaLinha2 = somaLinha2 / quantidadeVarPorLinha;
+      let mediaLinha3 = somaLinha3 / quantidadeVarPorLinha;
+      let mediaLinha4 = somaLinha4 / quantidadeVarPorLinha;
+
+      let varianciaLinha1 = 0;
+      let varianciaLinha2 = 0;
+      let varianciaLinha3 = 0;
+      let varianciaLinha4 = 0;
+
+      variavel = 0;
+
+      matrizTeste.forEach(function (num) {
+        variavel++;
+
+        for (let i = 0; i < num.length; i++) {
+          if (variavel == 1) {
+            varianciaLinha1 += Math.pow(num[i] - mediaLinha1, 2);
+          }
+          if (variavel == 2) {
+            varianciaLinha2 += Math.pow(num[i] - mediaLinha2, 2);
+          }
+          if (variavel == 3) {
+            varianciaLinha3 += Math.pow(num[i] - mediaLinha3, 2);
+          }
+          if (variavel == 4) {
+            varianciaLinha4 += Math.pow(num[i] - mediaLinha4, 2);
+          }
+        }
+      });
+      document.write("<br>");
+
+      varianciaLinha1 = varianciaLinha1 / quantidadeVarPorLinha;
+      varianciaLinha2 = varianciaLinha2 / quantidadeVarPorLinha;
+      varianciaLinha3 = varianciaLinha3 / quantidadeVarPorLinha;
+      varianciaLinha4 = varianciaLinha4 / quantidadeVarPorLinha;
+
+      document.write(varianciaLinha1.toFixed(2) + "<br>");
+      document.write(varianciaLinha2.toFixed(2) + "<br>");
+      document.write(varianciaLinha3.toFixed(2) + "<br>");
+      document.write(varianciaLinha4.toFixed(2) + "<br>");
     </script>
   </body>
 </html>
