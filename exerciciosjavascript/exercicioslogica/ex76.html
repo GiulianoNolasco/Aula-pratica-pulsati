@@ -27,6 +27,7 @@
       let variavel = 0;
 
       matrizTeste.forEach(function (num) {
+        document.write(num+"<br>")
         variavel++;
         for (let i = 0; i < num.length; i++) {
           if (variavel == 1) {
@@ -47,9 +48,9 @@
       document.write(`<br>
       Os valores da matriz diagonal principal são: <br>
       ${matrizTeste}<br>
-      A soma dos valores na linha 1 é:${somaLinha2}
-      A soma dos valores na linha 2 é:${somaLinha2}
-      A soma dos valores na linha 3 é:${somaLinha3}
+      A soma dos valores na linha 1 é:${somaLinha1}<br>
+      A soma dos valores na linha 2 é:${somaLinha2}<br>
+      A soma dos valores na linha 3 é:${somaLinha3}<br>
       A soma dos valores na linha 4 é:${somaLinha4}`);
     </script>
   </body>
