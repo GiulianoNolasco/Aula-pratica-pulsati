@@ -17,11 +17,9 @@ function render() {
       const tr = document.createElement("tr");
       tr.innerHTML = `
                         <td>${iten.id}</td>
-                        <td>${iten.name}</td>
-                        <td>${iten.age}</td>
                         <td>${iten.score}</td>
                         <td>
-                            <button onclick='edit(${iten.id}, "${iten.name}")'>EDIT</button>
+                            <button onclick='edit(${iten.id}, "${iten.score}")'>EDIT</button>
                             <button class='dell' onclick='deletReg(${iten.id})'>DELETE</button>
                             </td>
             `;
@@ -29,14 +27,14 @@ function render() {
     });
 }
 function add() {
-  let nome = "";
-  let idade = "";
+  //let nome = "";
+  //let idade = "";
   let pontuacao = 0;
   if (!(nome = prompt("Informe o nome", nome)));
-  if (!(idade = prompt("Informe a idade", idade)));
+ // if (!(idade = prompt("Informe a idade", idade)));
   pontuacao = prompt("Informe a pontuação", pontuacao);
   data.id++;
-  data.list.push({ id: data.id, name: nome, age: idade, score: pontuacao });
+  data.list.push({ id: data.id, score: pontuacao });
   render();
   save();
 }

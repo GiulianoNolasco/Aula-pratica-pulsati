@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        
+      //Gerador de dados aleatórios
+
+      let nomeBancoDeDados = "GIU_USUARIOS";
+      let id = 1; // informar o número inicial de ID
+
+      let sexo = "";
+      const cpf = document.getElementById("cpf");
+      function gerarCpf() {
+        const num1 = aleatorio(); //aleatorio já devolve string, logo não precisa de toString
+        const num2 = aleatorio();
+        const num3 = aleatorio();
+
+        const dig1 = dig(num1, num2, num3); //agora só uma função dig
+        const dig2 = dig(num1, num2, num3, dig1); //mesma função dig aqui
+
+        //aqui com interpolação de strings fica bem mais legivel
+        return `${num1}.${num2}.${num3}-${dig1}${dig2}`;
+      }
+      function dig(n1, n2, n3, n4) {
+        //as concatenações todas juntas uma vez que são curtas e legíveis
+        const nums = n1.split("").concat(n2.split(""), n3.split(""));
+
+        if (n4 !== undefined) {
+          //se for o segundo digito coloca o n4 no sitio certo
+          nums[9] = n4;
+        }
+
+        let x = 0;
+
+        //o j é também iniciado e incrementado no for para aproveitar a própria sintaxe dele
+        //o i tem inicios diferentes consoante é 1º ou 2º digito verificador
+        for (let i = n4 !== undefined ? 11 : 10, j = 0; i >= 2; i--, j++) {
+          x += parseInt(nums[j]) * i;
+        }
+
+        const y = x % 11;
+        //ternário aqui pois ambos os retornos são simples e continua legivel
+        return y < 2 ? 0 : 11 - y;
+      }
+      function aleatorio() {
+        const aleat = Math.floor(Math.random() * 999);
+        //o preenchimento dos zeros à esquerda é mais facil com a função padStart da string
+        return ("" + aleat).padStart(3, "0");
+      }
+
+      function getNomeAleatorio() {
+        let quantidadeDeSilabas = getRandomIntInclusive(2, 3);
+        let nome = "";
+
+        for (
+          contadorSilaba = 1;
+          contadorSilaba <= quantidadeDeSilabas;
+          contadorSilaba++
+        ) {
+          nome = nome + getConsoanteAleatoria() + getVogalAleatoria();
+        }
+
+        return nome;
+      }
+      function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      function getVogalAleatoria() {
+        let listaVogais = "AEOIU";
+        let numeroAleatorio = getRandomIntInclusive(1, 5);
+
+        return listaVogais.substring(numeroAleatorio - 1, numeroAleatorio);
+      }
+      function getConsoanteAleatoria() {
+        let listaConsoantes = "BCDFGHJKLMNPQRSTWVXYZ";
+        let numeroAleatorio = getRandomIntInclusive(1, 21);
+
+        return listaConsoantes.substring(numeroAleatorio - 1, numeroAleatorio);
+      }
+
+      function dataAleatoria() {
+        var dataIni = new Date(2000, 0, 1);
+        var dataAtual = new Date();
+        return new Date(
+          dataIni.getTime() +
+            Math.random() * (dataAtual.getTime() - dataIni.getTime())
+        )
+          .toLocaleString()
+          .substr(0, 10);
+      }
+
+      let listaTipoSanguineo = [
+        "A+",
+        "B+",
+        "AB+",
+        "O+",
+        "A-",
+        "B-",
+        "AB-",
+        "O-",
+      ];
+      function gerarTipoSanguineo() {
+        for (let i = 0; i < listaTipoSanguineo.length; i++) {
+          return listaTipoSanguineo[
+            Math.floor(Math.random() * listaTipoSanguineo.length)
+          ];
+        }
+      }
+
+      for (let y = 0; y < 100; y++) {
+        if (y % 2 == 0) {
+          sexo = "M";
+        } else {
+          sexo = "F";
+        }
+
+        document.write(
+          ` INSERT INTO ${nomeBancoDeDados}(id, cpf,sexo,nome,data_nascimento, tipo_sanguineo)
+                VALUES (${id},'${gerarCpf()}', '${sexo}','${getNomeAleatorio()}',
+                TO_DATE('${dataAleatoria()}', 'DD/MM/YYYY'),'${gerarTipoSanguineo()}'); <br>
+                `
+        );
+        id++;
+      }
+    </script>
+  </body>
+</html>
