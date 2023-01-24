@@ -12,7 +12,16 @@
       //Gerador de dados aleatórios
 
       let nomeBancoDeDados = "GIU_USUARIOS";
-      let id = 1; // informar o número inicial de ID
+      let id = 51; // informar o número inicial de ID
+      let numeroDeDadosAGerar = 1000; // informar o número inicial de ID
+
+
+
+
+
+
+
+
 
       let sexo = "";
       const cpf = document.getElementById("cpf");
@@ -115,7 +124,7 @@
         }
       }
 
-      for (let y = 0; y < 100; y++) {
+      for (let y = 0; y < numeroDeDadosAGerar; y++) {
         if (y % 2 == 0) {
           sexo = "M";
         } else {

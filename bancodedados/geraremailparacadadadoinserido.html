@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Gerador de dados aleatórios
+
+      let nomeTabela = "GIU_USUARIOS";
+      let id = 1; // informar o número inicial de ID
+      let numeroFinalTabela = 1050; // informar o número finaç de ID
+      let nomeCampoAlterar = "email";
+
+      //############################################################################
+
+      function getNomeAleatorio() {
+        let quantidadeDeSilabas = getRandomIntInclusive(2, 3);
+        let nome = "";
+
+        for (
+          contadorSilaba = 1;
+          contadorSilaba <= quantidadeDeSilabas;
+          contadorSilaba++
+        ) {
+          nome = nome + getConsoanteAleatoria() + getVogalAleatoria();
+        }
+
+        return nome;
+      }
+      function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      function getVogalAleatoria() {
+        let listaVogais = "AEOIU";
+        let numeroAleatorio = getRandomIntInclusive(1, 5);
+
+        return listaVogais.substring(numeroAleatorio - 1, numeroAleatorio);
+      }
+      function getConsoanteAleatoria() {
+        let listaConsoantes = "BCDFGHJKLMNPQRSTWVXYZ";
+        let numeroAleatorio = getRandomIntInclusive(1, 21);
+
+        return listaConsoantes.substring(numeroAleatorio - 1, numeroAleatorio);
+      }
+
+      let novoEmail = "";
+      
+      let listaEmails = [
+        "@gmail.com",
+        "@hotmail.com",
+        "@outlook.com",
+        "@yahoo.com.br",
+        "@ig.com",
+      ];
+      
+      function geraremailSegundaParte() {
+        for (let i = 0; i < listaEmails.length; i++) {
+          return listaEmails[
+            Math.floor(Math.random() * listaEmails.length)
+          ];
+        }
+      }
+      //############################################################################
+      
+      for (let y = 0; y < numeroFinalTabela; y++) {
+        document.write(
+          ` UPDATE ${nomeTabela} SET ${nomeCampoAlterar} = '${(getNomeAleatorio() + geraremailSegundaParte())}' WHERE id = ${id};<br>
+                `
+        );
+        id++;
+      }
+    </script>
+  </body>
+</html>

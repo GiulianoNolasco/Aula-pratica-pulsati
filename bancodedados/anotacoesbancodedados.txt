@@ -1,0 +1,93 @@
+CREATE TABLE giu_usuarios (
+    id              NUMBER PRIMARY KEY,
+    cpf             VARCHAR2(15) NOT NULL UNIQUE,
+    sexo            VARCHAR2(1) NOT NULL,
+    nome            VARCHAR2(4000) NOT NULL,
+    data_nascimento DATE,
+    tipo_sanguineo  VARCHAR2(3)
+);
+
+ALTER TABLE GIU_USUARIOS MODIFY DATA_NASCIMENTO DATE NOT NULL;
+
+ALTER TABLE GIU_USUARIOS ADD sobrenome VARCHAR2(4000) NOT NULL;
+
+
+ALTER TABLE GIU_USUARIOS drop column sobrenome ;
+
+
+COMMENT ON COLUMN GIU_USUARIOS.TIPO_SANGUINEO IS 'TIPO SANGUINEO'  ;
+
+SELECT TO_CHAR(sysdate, 'DD/MM/YYYY HH24:MI:SS') FROM dual;  
+
+SELECT TO_DATE('04/12/2001', 'DD/MM/YYYY') FROM dual;
+
+SELECT DISTINCT 8 FROM GIULIANO_USUARIO
+
+BETWEEN
+WHERE
+
+
+
+SELECT * FROM GIU_USUARIOS WHERE NOME LIKE '%a%'
+
+and, varios selects
+
+#################################################################################################################################
+
+
+
+EX 01
+Faça um select (query) que traga todos os dados das pessoas
+SELECT * FROM giu_usuarios;
+
+Ex 02
+Faça um select (query) que traga somente o nome e a data de nascimento das pessoas
+SELECT NOME,DATA_NASCIMENTO FROM GIU_USUARIOS
+
+Ex 03
+Faça um select (Query) que traga somente as pessoas aonde o email contenha '@gmail.com'
+SELECT * FROM GIU_USUARIOS WHERE EMAIL LIKE'%@gmail%';
+
+Ex 04
+Faça um select (Query) que traga somente as pessoas onde o nome seja PEME
+SELECT * FROM GIU_USUARIOS WHERE nome LIKE '%PEME%';
+
+Ex 05
+Faça um select (Query) que traga somente as pessoas nascidas depois dos anos 2015
+SELECT * FROM GIU_USUARIOS WHERE data_nascimento BETWEEN TO_DATE('01/01/2015', 'DD/MM/YYYY') AND TO_DATE('04/12/2100', 'DD/MM/YYYY');
+
+Ex 06
+Faça um select (Query) que traga somente as pessoas nascidas antes dos anos 2015
+SELECT * FROM GIU_USUARIOS WHERE data_nascimento BETWEEN TO_DATE('01/01/1900', 'DD/MM/YYYY') AND TO_DATE('01/01/2015', 'DD/MM/YYYY');
+
+Ex 07
+Faça um select (Query) que traga todas as pessoas onde nasceram no dia 12/12/2000 OU o nome contenha M em qualquer lugar da palavra
+SELECT * FROM GIU_USUARIOS WHERE data_nascimento LIKE TO_DATE('04/12/2013', 'DD/MM/YYYY') OR NOME LIKE '%M%';
+
+
+Ex 08
+Faça um select (Query) que traga a pessoa que tenha um id igual a 33
+SELECT * FROM GIU_USUARIOS WHERE ID LIKE 33;
+
+Ex 09
+Faça um select (Query) onde traga o id e a data de nascimento das pessoas onde o nome termine com O OU o email da pessoa contenha @outlook.com ou a data de nascimento esteja em 10/07/1987 ou 26/07/2022
+SELECT ID,DATA_NASCIMENTO FROM GIU_USUARIOS WHERE nome LIKE '%O' OR EMAIL LIKE '%@outlook.com%';
+
+Ex 10
+Faça um select (Query) onde traga o email das pessoas que terminem com I
+SELECT * FROM GIU_USUARIOS WHERE EMAIL LIKE '%I@%';
+
+Ex 11
+Faça um select (Query) onde traga qual a maior data de nascimento onde o email contenha @hotmail.com
+SELECT MIN(DATA_NASCIMENTO) FROM GIU_USUARIOS WHERE EMAIL LIKE '%@outlook.com%';
+
+Ex 12
+Faça um select (Query) onde traga a menor data de nascimento onde o email contenha @outlook.com
+SELECT MIN(DATA_NASCIMENTO) FROM GIU_USUARIOS WHERE EMAIL LIKE '%@outlook.com%';
+
+
+Ex 13
+Faça um select (Query) onde traga a idade da pessoa, data de hoje menos a data de nascimento DATEDIFF(day, nascimento, hoje) /365
+SELECT nome,TRUNC((SYSDATE - DATA_NASCIMENTO) /365) as IDADE from GIU_USUARIOS;
+
+
