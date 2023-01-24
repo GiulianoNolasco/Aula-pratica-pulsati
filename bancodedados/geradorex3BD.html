@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let nomeBancoDeDados = "giu_filmes";
+      let id = 1; // informar o número inicial de ID
+      let numeroDeDadosAGerar = 30; // informar o número inicial de ID
+
+      let nome = [
+        "	Rede de ódio	",
+        "	1917	",
+        "	Ad Astra	",
+        "	Coringa	",
+        "	Dois Papas	",
+        "	Ford vs Ferrari	",
+        "	Klaus	",
+        "	O Irlandês	",
+        "	Parasita	",
+        "	Retrato de uma Jovem em Chamas	",
+        "	Vingadores: ultimato	",
+        "	Assassinato às Cegas	",
+        "	Bird box	",
+        "	Bohemian Rhapsody	",
+        "	Cafarnaum	",
+        "	Desejo de matar 2018	",
+        "	Green book: o guia	",
+        "	Homem-Aranha no Aranhaverso	",
+        "	Vingadores Guerra infinita	",
+        "	A forma da água	",
+        "	Corra!	",
+        "	Dunkirk	",
+        "	Logan	",
+        "	Neve Negra	",
+        "	O destino de uma nação	",
+        "	O outro irmão	",
+        "	Órbita 9	",
+        "	Roma	",
+        "	Shimmer Lake	",
+        "	The post	",
+        "	Três anúncios para um crime	",
+      ];
+      let descricao = [
+        "	Jan Komasa	",
+        "	Sam Mendes	",
+        "	James Gray	",
+        "	Todd Phillips	",
+        "	Fernando Meirelles	",
+        "	James Mangold	",
+        "	Sergio Pablos	",
+        "	Martin Scorsese	",
+        "	Bong Joon Ho	",
+        "	Céline Sciamma	",
+        "	Joe Russo	",
+        "	Sriram Raghavan	",
+        "	Susanne Bier	",
+        "	Bryan Singer	",
+        "	Nadine Labaki	",
+        "	Eli Roth	",
+        "	Peter Farrely	",
+        "	Bob Persichetti	",
+        "	Joel Russo	",
+        "	Guilherme Del Toro	",
+        "	Jordan Peele	",
+        "	Christopher Nolan	",
+        "	James Mangold	",
+        "	Martin Hodara	",
+        "	Joe Wright	",
+        "	Israel Adrian	",
+        "	Hatem Khraiche	",
+        "	Alfonso Cuaron	",
+        "	Oren Uziel	",
+        "	Steven Spielberg	",
+        "	Martin McDonagh	",
+      ];
+      let data_lancamento = [
+        "	2020	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2019	",
+        "	2018	",
+        "	2018	",
+        "	2018	",
+        "	2018	",
+        "	2018	",
+        "	2018	",
+        "	2018	",
+        "	2018	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+        "	2017	",
+      ];
+      let quantidade_vendas = [
+        "	0	",
+        "	98	",
+        "	0	",
+        "	60	",
+        "	0	",
+        "	202	",
+        "	185	",
+        "	0	",
+        "	30	",
+        "	237	",
+        "	75	",
+        "	192	",
+        "	0	",
+        "	0	",
+        "	84	",
+        "	0	",
+        "	130	",
+        "	67	",
+        "	64	",
+        "	0	",
+        "	0	",
+        "	0	",
+        "	217	",
+        "	0	",
+        "	0	",
+        "	0	",
+        "	0	",
+        "	0	",
+        "	0	",
+        "	0	",
+        "	152	",
+      ];
+      let pais_origem = [
+        "	Polônia	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	Coreia do Sul	",
+        "	França	",
+        "	EUA	",
+        "	Índia	",
+        "	EUA	",
+        "	EUA	",
+        "	Líbano	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	Reino Unido	",
+        "	EUA	",
+        "	Argentina	",
+        "	Reino Unido	",
+        "	Argentina	",
+        "	Espanha	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+        "	EUA	",
+      ];
+
+      for (let i = 0; i < numeroDeDadosAGerar; i++) {
+        
+
+        document.write(
+          ` INSERT INTO ${nomeBancoDeDados} (id, nome, descricao, data_lancamento, quantidade_vendas, pais_origem)
+                VALUES (${id},'${nome[i]}', '${descricao[i]}','${data_lancamento[i]}',
+                '${quantidade_vendas[i]}','${pais_origem[i]}'); <br>
+                `
+        );
+        id++;
+      }
+    </script>
+  </body>
+</html>

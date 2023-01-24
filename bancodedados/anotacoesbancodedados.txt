@@ -32,7 +32,9 @@ SELECT * FROM GIU_USUARIOS WHERE NOME LIKE '%a%'
 
 and, varios selects
 
-#################################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
 
 
 
@@ -91,3 +93,95 @@ Faça um select (Query) onde traga a idade da pessoa, data de hoje menos a data 
 SELECT nome,TRUNC((SYSDATE - DATA_NASCIMENTO) /365) as IDADE from GIU_USUARIOS;
 
 
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+
+
+Crie uma tabela chamada NOME_DE_VOCES_funcionarios  A tabela deverá conter os seguintes campos
+ id, primeiro_nome, segundo_nome, data_nascimento, cpf, rg, endereço, CEP, cidade, telefone, funcao, salario Insira uns 30 registros para base de dados
+
+
+
+CREATE TABLE giu_funcionarios(
+    id              NUMBER PRIMARY KEY,
+    primeiro_nome   VARCHAR2(4000) NOT NULL,
+    segundo_nome    VARCHAR2(4000) NOT NULL,
+    data_nascimento DATE,
+    cpf             VARCHAR2(15) NOT NULL UNIQUE,
+    rg              VARCHAR2(15),
+    endereco        VARCHAR2(100),
+    cep             NUMBER(8),
+    cidade          VARCHAR2(100),
+    telefone        NUMBER(12),
+    funcao          VARCHAR2(4000),
+    salario         DECIMAL(100, 2)
+    );
+    
+
+ INSERT INTO giu_funcionarios(id, primeiro_nome, segundo_nome, data_nascimento, cpf, rg, endereço, cep, cidade, telefone, funcao, salario) 
+                      VALUES ('1','TESTE','TESTADO','05/05/2000','047.657.985-88','5004595','RUA NAO LOCALIZADA','89023300','GASPAR','04799998888','TRABALHADOR','2000,00');
+
+                      INSERT INTO giu_funcionarios (
+    id,
+    primeiro_nome,
+    segundo_nome,
+    data_nascimento,
+    cpf,
+    rg,
+   endereco,
+    cep,
+    cidade,
+    telefone,
+    funcao,
+    salario
+) VALUES (
+    '14',
+    'BOLSONARO',
+    'CAPITAO',
+    '14/05/1877',
+    '006.193.949-13',
+    '47859951',
+    'RUA DOS EX PRESIDENTES',
+    '89014777',
+    'SAO PAULO',
+    '04789747889',
+    'PRESIDENTE',
+    '220000,00'
+);
+1 Crie um select que traga todas as pessoas que começem com a letra A ou contenha no meio a letra J ou termine com I|
+SELECT * FROM GIU_FUNCIONARIOS WHERE (PRIMEIRO_NOME LIKE 'A%' OR  PRIMEIRO_NOME LIKE '%J%' OR PRIMEIRO_NOME LIKE 'I%');
+
+2 Crie um select que traga todas as pessoas que nasceram antes de 1999
+SELECT * FROM GIU_FUNCIONARIOS WHERE (DATA_NASCIMENTO < TO_DATE('01/01/1999', 'DD/MM/YYYY'));
+
+3 Crie um select em que o rg da pessoa seja diferente de 123.456.789-01
+SELECT * FROM GIU_FUNCIONARIOS WHERE (RG!=5004595);
+
+4 Crie um select que traga quais cidades existem na base de dados porém sem repetir 
+SELECT DISTINCT CIDADE FROM GIU_FUNCIONARIOS ;
+
+5 Crie um select que traga quais pessoas existem na base de dados porém sem repetir
+SELECT DISTINCT PRIMEIRO_NOME FROM GIU_FUNCIONARIOS ;
+
+6 Crie um select onde você traga o nome e o sobrenome concatenados em uma coluna de todas as pessoas com mais de 20 anos ou que o telefone termina com 9
+
+7 Crie um select onde você traga todas as pessoas ordenadas pela função de trabalho DESAFIO TEM COISAS QUE NAO EXPLIQUEI 
+
+8 Crie um select onde você traga a média salarial agrupada por funcao
+
+9 traga todos os registros com id entre 10 e 15
+
+10 selecione apenas os campos de id cpf, rg e traga somente os registros em que o o rg e o cpf nao começem com os digitos do id da linha.
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+Crie uma tabela chamada NOME_DE_VOCES_filmes
+A tabela deverá conter os seguintes campos id, nome, descricao, data_lancamento, quantidade_vendas, pais_origem
+Insira uns 30 registros para base de dados 
+1 - Deverá trazer todos os filmes com vendas maiores que 800 e que a descriçao contenha no meio da string "Harry Potter" 
+2 - Deverá trazer todos os filmes que o pais de origem seja Brasil ou que o nome do filme contenha Brasil
