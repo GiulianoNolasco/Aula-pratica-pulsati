@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      let nomeBancoDeDadosPaises = "giu_paises"; // alterar
+      let nomeBancoDeDadosEstados = "giu_estados";// alterar
+      let nomeBancoDeDadosCidades = "giu_cidades";// alterar
+
+      let paises = [
+        "	Algeria	",
+        "	Argentina	",
+        "	Armenia	",
+        "	Australia	",
+        "	Austria	",
+        "	Belgium	",
+        "	Benin	",
+        "	Bolivia	",
+        "	Brazil	",
+        "	Canada	",
+        "	Chad	",
+        "	Colombia	",
+        "	Côte dIvoire	",
+        "	Cuba	",
+        "	Denmark	",
+        "	Egypt	",
+        "	El Salvador	",
+        "	Equatorial Guinea	",
+        "	Eritrea	",
+        "	Ethiopia	",
+        "	Finland	",
+        "	France	",
+        "	Germany	",
+        "	Ghana	",
+        "	Greenland	",
+        "	Hungary	",
+        "	India	",
+        "	Iran	",
+        "	Israel	",
+        "	Italy	",
+        "	Japan	",
+        "	Jordan	",
+        "	Kazakhstan	",
+        "	Kuwait	",
+        "	Latvia	",
+        "	Mexico	",
+        "	Morocco	",
+        "	Netherlands	",
+        "	Nigeria	",
+        "	Oman	",
+        "	Pakistan	",
+        "	Paraguay	",
+        "	Peru	",
+        "	Philippines	",
+        "	Pitcairn Islands	",
+        "	Portugal	",
+        "	Romania	",
+        "	Russia	",
+        "	San Marino	",
+        "	Saudi Arabia	",
+        "	Serbia	",
+        "	Spain	",
+        "	Switzerland	",
+        "	Syria	",
+        "	Turkey	",
+        "	Turkmenistan	",
+        "	Uganda	",
+        "	United Arab Emirates	",
+        "	United Kingdom	",
+        "	United States	",
+        "	Venezuela	",
+        "	Yemen	",
+      ];
+      let estados = [
+        "	Abadla	",
+        "	Abra Pampa	",
+        "	Abovyan	",
+        "	Adelaide	",
+        "	Absam	",
+        "	Aalst	",
+        "	Abomey	",
+        "	Achacachi	",
+        "	Abadia dos Dourados	",
+        "	Abbotsford	",
+        "	Abeche	",
+        "	Acacias	",
+        "	Abengourou	",
+        "	Abreus	",
+        "	Aalborg	",
+        "	Abjij	",
+        "	Acajutla	",
+        "	Aconibe	",
+        "	Adi Keyh	",
+        "	Adigrat	",
+        "	Aanekoski	",
+        "	Abbeville	",
+        "	Aachen	",
+        "	Accra	",
+        "	Aasiaat	",
+        "	Abony	",
+        "	Abohar	",
+        "	`Alavicheh	",
+        "	`Akko	",
+        "	Abano Terme	",
+        "	Abashiri	",
+        "	`Ajlun	",
+        "	Abay	",
+        "	Abu Hulayfah	",
+        "	Adazi	",
+        "	Abasolo	",
+        "	Abadou	",
+        "	Aalsmeer	",
+        "	Aba	",
+        "	`Ibri	",
+        "	Abbottabad	",
+        "	Abai	",
+        "	Abancay	",
+        "	Aborlan	",
+        "	Adamstown	",
+        "	Abrantes	",
+        "	Abrud	",
+        "	Abakan	",
+        "	Acquaviva	",
+        "	Abha	",
+        "	Ada	",
+        "	A Coruna	",
+        "	Adliswil	",
+        "	`Adra	",
+        "	Adiyaman	",
+        "	Abadan	",
+        "	Abim	",
+        "	`Ajman	",
+        "	Aberbargoed	",
+        "	Adelphi	",
+        "	Acarigua	",
+        "	`Amran	",
+      ];
+      let cidades = [
+        "	Abadla	",
+        "	Abra Pampa	",
+        "	Abovyan	",
+        "	Adelaide	",
+        "	Absam	",
+        "	Aalst	",
+        "	Abomey	",
+        "	Achacachi	",
+        "	Abadia dos Dourados	",
+        "	Abbotsford	",
+        "	Abéché	",
+        "	Acacías	",
+        "	Abengourou	",
+        "	Abreus	",
+        "	Aalborg	",
+        "	Abjīj	",
+        "	Acajutla	",
+        "	Aconibe	",
+        "	Adi Keyh	",
+        "	Ādīgrat	",
+        "	Äänekoski	",
+        "	Abbeville	",
+        "	Aachen	",
+        "	Accra	",
+        "	Aasiaat	",
+        "	Abony	",
+        "	Abohar	",
+        "	Alavīcheh	",
+        "	Akko	",
+        "	Abano Terme	",
+        "	Abashiri	",
+        "	Ajlūn	",
+        "	Abay	",
+        "	Abū Ḩulayfah	",
+        "	Ādaži	",
+        "	Abasolo	",
+        "	Abadou	",
+        "	Aalsmeer	",
+        "	Aba	",
+        "	Ibrī	",
+        "	Abbottabad	",
+        "	Abaí	",
+        "	Abancay	",
+        "	Aborlan	",
+        "	Adamstown	",
+        "	Abrantes	",
+        "	Abrud	",
+        "	Abakan	",
+        "	Acquaviva	",
+        "	Abhā	",
+        "	Ada	",
+        "	A Coruña	",
+        "	Adliswil	",
+        "	Adrā	",
+        "	Adyaman	",
+        "	Abadan	",
+        "	Abim	",
+        "	Ajmān	",
+        "	Aberbargoed	",
+        "	Adelphi	",
+        "	Acarigua	",
+        "	Amrān	"
+      ];
+
+      let id1 = 1;
+      for (let i = 0; i < paises.length; i++) {
+        document.write(
+          ` INSERT INTO ${nomeBancoDeDadosPaises} (pais_id, nome_pais)
+                VALUES (${id1},'${paises[i]}'); <br>
+                `
+        );
+        id1++;
+      }
+
+      let id2 = 1;
+      for (let i = 0; i < estados.length; i++) {
+        document.write(
+          ` INSERT INTO ${nomeBancoDeDadosEstados} (estado_id, nome_estado,fk_id_pais)
+                VALUES (${id2},'${estados[i]}','${id2}'); <br>
+                `
+        );
+        id2++;
+      }
+
+      let id3 = 1;
+      for (let i = 0; i < cidades.length; i++) {
+        document.write(
+          ` INSERT INTO ${nomeBancoDeDadosCidades} (cidade_id, nome_cidade,fk_id_estado)
+                VALUES (${id3},'${cidades[i]}','${id3}'); <br>
+                `
+        );
+        id3++;
+      }
+    </script>
+  </body>
+</html>

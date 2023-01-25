@@ -167,13 +167,24 @@ SELECT DISTINCT PRIMEIRO_NOME FROM GIU_FUNCIONARIOS ;
 
 6 Crie um select onde você traga o nome e o sobrenome concatenados em uma coluna de todas as pessoas com mais de 20 anos ou que o telefone termina com 9
 
-7 Crie um select onde você traga todas as pessoas ordenadas pela função de trabalho DESAFIO TEM COISAS QUE NAO EXPLIQUEI 
+SELECT PRIMEIRO_NOME || ' '||SEGUNDO_NOME as nome_completo, TRUNC((SYSDATE - data_nascimento) /365) AS IDADE, TELEFONE
+FROM GIU_FUNCIONARIOS
+WHERE TRUNC((SYSDATE - data_nascimento) /365) > 20 OR TELEFONE LIKE '9%';
+
+
+7 Crie um select onde você traga todas as pessoas ordenadas pela função de trabalho 
+SELECT * FROM GIU_FUNCIONARIOS ORDER BY FUNCAO
 
 8 Crie um select onde você traga a média salarial agrupada por funcao
+SELECT AVG(SALARIO)AS MEDIA_SALARIO,FUNCAO FROM GIU_FUNCIONARIOS GROUP BY FUNCAO
 
 9 traga todos os registros com id entre 10 e 15
+SELECT * FROM GIU_USUARIOS WHERE ID BETWEEN 5 AND 10;
 
 10 selecione apenas os campos de id cpf, rg e traga somente os registros em que o o rg e o cpf nao começem com os digitos do id da linha.
+
+SELECT ID,CPF,RG FROM GIU_FUNCIONARIOS 
+WHERE (SUBSTR(RG,1,1) != ID) AND (SUBSTR(CPF,1,1) != ID);
 
 
 #########################################################################################################################
@@ -183,5 +194,378 @@ SELECT DISTINCT PRIMEIRO_NOME FROM GIU_FUNCIONARIOS ;
 Crie uma tabela chamada NOME_DE_VOCES_filmes
 A tabela deverá conter os seguintes campos id, nome, descricao, data_lancamento, quantidade_vendas, pais_origem
 Insira uns 30 registros para base de dados 
-1 - Deverá trazer todos os filmes com vendas maiores que 800 e que a descriçao contenha no meio da string "Harry Potter" 
+
+1 - Deverá trazer todos os filmes com vendas maiores que 100 e
+que a descriçao contenha no meio da string "a" 
+
+SELECT * FROM GIU_FILMES WHERE quantidade_vendas > 100 AND descricao like '%a%'
+
+
 2 - Deverá trazer todos os filmes que o pais de origem seja Brasil ou que o nome do filme contenha Brasil
+SELECT * FROM GIU_FILMES WHERE pais_origem LIKE '%Índia%' OR nome LIKE '%Roma%';
+
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+
+
+- MIN() => traz o menor registro - MAX() => traz o maior registro - AVG() => traz a média dos registros - SUM() => traz a soma dos registros - FLOOR => arredonda para abaixo - SEIL => arredonda para cima - ROUND => considera arredondar para onde estiver mais perto e tem como passar o parametro de quantas casas decimais você quer manter - REPLACE() => mudar um caracter por outro
+É possível envolver em outro replace para substituir mais de uma coisa - SUBSTR() => para pegar apenas uma parte da string. Recebe parametro da posição de inicio e posição de fim. - LENGTH => diz quantos caracteres existe na sua string Update e Delete:
+- UPDATE: atualiza algum/alguns campos - SEMPRE use o where
+EX:
+update tabela
+set coluna = atualização
+where = id - DELETE: deletea os registros - SEMPRE use o where
+EX:
+delete tabela
+where = id Chaves Estrangeiras:
+- Foreign Key => referencia do id de outra tabela Concetio de Join: Inner Join => traz apenas os registros que são iguais:
+select u.nome, t.nr_telefone
+from giu_usuarios u
+inner join giu_telefone_usuarios t on t.id_usuario = u.id; Left Join => traz todos os registros da tabela da esquerda e os que existem na tabela da direita que são iguais, se não houver traz null.
+select u.nome, t.nr_telefone
+from giu_usuarios u
+left join giu_telefone_usuarios t on t.id_usuario = u.id;
+Right Join => 
+select u.nome, t.nr_telefone
+from giu_usuarios u
+right join giu_telefone_usuarios t on t.id_usuario = u.id;
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+[09:54] Adriana Dias Brunner[09:54] Adriana Dias Brunner
+--SOMA COM ALIAS (PODE TIRAR O AS) 
+SELECT SUM(SALARIO) AS SALARIO FROM ADRI_FUNCIONARIOS
+ 
+ -- AGREGAÇÃO + PUXAR OUTRA COLUNA 
+SELECT SUM(SALARIO) AS SALARIO, FUNCAO FROM ADRI_FUNCIONARIOS GROUP BY FUNCAO 
+ 
+--MEDIA + AGRUPAMENTO 
+SELECT AVG(SALARIO) AS SALARIO, FUNCAO FROM ADRI_FUNCIONARIOS GROUP BY FUNCAO 
+ 
+-- COUNT PARA CONTAR QUANTAS LINHAS DE REGISTRO EXISTE
+SELECT COUNT(*) FROM TABELA WHERE CIDADE = 'SAO PAULO' 
+ 
+--ARREDONDAMENTO 
+SELECT CEIL(AVG(SALARIO)) AS SALARIO FROM ADRI_FUNCIONARIOS --PRA CIMA 
+SELECT FLOOR(AVG(SALARIO)) AS SALARIO FROM ADRI_FUNCIONARIOS --PRA BAIXO 
+SELECT ROUND(AVG(SALARIO), 2) AS SALARIO FROM ADRI_FUNCIONARIOS --DEFINE QUANTAS CASAS APÓS A VIRGULA
+ 
+ --REPLACE - TIRAR PONTOS E TRAÇOS - UM PARAMETRO POR VEZ, POR ISSO USAR 2 REPLACE 
+SELECT REPLACE(REPLACE(CPF, '-',''),'.','') FROM ADRI_FUNCIONARIOS 
+ 
+-- SUBSTR PARA CORTAR PALAVRAS EX MARIA RETORNA MARI 
+SELECT SUBSTR(PRIMEIRO_NOME, 0,4) FROM ADRI_FUNCIONARIOS WHERE ID = 11
+ 
+-- LENGTH PARA CONTAR O TAMANHO 
+SELECT LENGTH(PRIMEIRO_NOME) FROM ADRI_FUNCIONARIOS WHERE ID = 11 
+ 
+--FOREIGN KEY 
+CREATE TABLE ADRI_TELEFONES ( 
+ID_TELEFONE NUMBER PRIMARY KEY,
+NR_TELEFONE VARCHAR(10) NOT NULL, 
+ID_USUARIO NUMBER, 
+CONSTRAINT ID_USUARIO_ADRI_FK FOREIGN KEY (ID_USUARIO) REFERENCES ADRI_USUARIOS(ID) ) 
+ 
+--JOIN 
+ 
+SELECT NOME FROM ADRI_USUARIOS 
+INNER JOIN ADRI_TELEFONES ON ADRI_TELEFONE.ID_USUARIOS = ADRI_USUARIOS.ID
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+Tabela PAISES:
+ 
+PAIS_ID numero
+NOME_PAIS texto nao nulo
+ 
+ 
+Tabela ESTADOS
+ 
+ESTADO_ID numero
+NOME_ESTADO texto nao nulo
+FK_ID_PAIS 
+ 
+ CREATE TABLE giu_estados(
+estado_id NUMBER PRIMARY KEY,
+nome_estado VARCHAR2(500) NOT NULL,
+fk_id_pais NUMBER,
+CONSTRAINT id_pais_giu_fk FOREIGN KEY (fk_id_pais) REFERENCES giu_paises(pais_id)
+);
+
+
+ 
+Tabela Cidades
+ 
+CIDADE_ID numero
+NOME_CIDADE texto not nulo
+FK_ID_ESTADO
+ 
+CREATE TABLE giu_cidades(
+cidade_id NUMBER PRIMARY KEY,
+nome_cidade VARCHAR2(500) NOT NULL,
+fk_id_estado NUMBER,
+CONSTRAINT id_estado_giu_fk FOREIGN KEY (fk_id_estado) REFERENCES giu_estados(estado_id)
+);
+
+
+Tabela PESSOAS
+ 
+PESSOA_ID numero
+NOME_PESSOA texto
+EMAIL_PESSOA texto
+DATA_NASCIMENTO data nao nulo
+FK_ID_CIDADE
+
+
+CREATE TABLE giu_pessoas(
+pessoa_id NUMBER PRIMARY KEY,
+nome_pessoa VARCHAR2(500),
+email_pessoa VARCHAR2(500),
+data_nascimento date NOT NULL,
+fk_id_cidade NUMBER,
+CONSTRAINT id_cidade_giu_fk FOREIGN KEY (fk_id_cidade) REFERENCES giu_cidades(cidade_id)
+);
+
+ 
+
+
+Insira registros em todas as tabelas
+ 
+
+ 
+ 
+## Ex01
+ 
+`Fazer uma consulta (Query), onde traga o email da pessoa, e de qual Cidade essa pessoa pertence.`
+ 
+SELECT
+    gp.email_pessoa,
+    gc.nome_cidade
+FROM
+         giu_pessoas  gp
+    INNER JOIN giu_cidades gc ON  gc.cidade_id = gp.fk_id_cidade;
+
+
+
+
+
+
+ 
+## Ex02
+ 
+`Fazer uma consulta (Query), onde traga quantas pessoas estão cadastradas em cada pais`
+ 
+SELECT
+     gp.nome_pais, COUNT(gpe.pessoa_id) as soma
+FROM
+    giu_paises gp
+INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+GROUP BY gp.nome_pais;
+
+
+
+
+
+## Ex03
+ 
+`Fazer um consulta (Query), onde traga quantas pessoas estão cadastradas em cada cidade`
+ 
+SELECT
+     gc.nome_cidade, COUNT(gpe.pessoa_id) as soma
+FROM
+    giu_cidades gc
+INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+GROUP BY  gc.nome_cidade;
+
+
+
+
+
+## Ex04
+ 
+`Fazer uma consulta (Query), onde traga quantas pessoas estão cadastradas em cada estado`
+
+SELECT
+ge.nome_estado, COUNT(gpe.pessoa_id) as soma
+FROM giu_estados ge
+INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+GROUP BY ge.nome_estado;
+ 
+
+
+
+
+
+## Ex05
+ 
+`Fazer uma consulta (Query), onde traga qual é o nome e o código dos paises cadastrados.`
+ 
+SELECT
+    giu_paises.nome_pais, giu_paises.pais_id
+FROM
+    giu_paises ;
+
+
+
+
+
+
+## Ex06
+ 
+`Fazer uma consulta (Query), onde traga todas as pessoas que moram no pais com Id 3 e que nasceram depois do dia 01/01/2000 e que o email contenha @gmail.com`
+ 
+ 
+SELECT
+     gpe.nome_pessoa,gpe.data_nascimento,gpe.email_pessoa, gp.nome_pais,gp.pais_id
+FROM
+    giu_paises gp
+INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+WHERE (gpe.data_nascimento > TO_DATE('01/01/2000', 'DD/MM/YYYY')) 
+AND (gpe.email_pessoa LIKE '%@gmail.com%');
+ 
+ 
+## Ex07
+ 
+`Fazer uma consulta (Query), onde traga a pessoa mais velha do pais com id 1`
+ 
+SELECT MAX(idade) FROM (
+    SELECT
+        gpe.nome_pessoa,
+        trunc((sysdate - gpe.data_nascimento) / 365) AS idade,
+        gp.nome_pais,
+        gp.pais_id
+    FROM
+             giu_paises gp
+        INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+        INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+        INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+    WHERE
+        gp.pais_id = 3
+);
+
+
+
+    SELECT
+        gpe.nome_pessoa,
+        trunc((sysdate - gpe.data_nascimento) / 365) AS idade,
+                gp.nome_pais,
+        gp.pais_id
+    FROM
+             giu_paises gp
+        INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+        INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+        INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+    WHERE
+        gp.pais_id = 3;
+ 
+## Ex08
+ 
+`Fazer uma consulta (Query), onde traga o nome e o email pessoa mais nova do estado Rio grande do sul`
+ 
+ 
+## Ex09
+ 
+`Fazer uma consulta (Query), onde traga o nome da pessoa, nome da cidade, nome do estado, e nome do pais das pessoas com mais de 30 anos UTILIZAR DATEDIFF NO WHERE`
+ 
+SELECT
+    gpe.nome_pessoa,
+    TRUNC((SYSDATE - gpe.DATA_NASCIMENTO) /365),
+    gc.nome_cidade,
+    ge.nome_estado,
+    gp.nome_pais
+FROM
+         giu_paises gp
+    INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+    INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+    INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+WHERE
+   TRUNC((SYSDATE - DATA_NASCIMENTO) /365)>30;
+    
+    
+    
+
+
+## Ex10
+ 
+`Fazer uma consulta (Query), onde traga o nome da pessoa, nome da cidade, nome do estado, e nome do pais das pessoas com menos de 20 anos UTILIZAR DATEDIFF NO WHERE`
+ 
+SELECT
+    gpe.nome_pessoa,
+    TRUNC((SYSDATE - gpe.DATA_NASCIMENTO) /365) as idade,
+    gc.nome_cidade,
+    ge.nome_estado,
+    gp.nome_pais
+FROM
+         giu_paises gp
+    INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+    INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+    INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+WHERE
+   TRUNC((SYSDATE - DATA_NASCIMENTO) /365)<20;
+    
+    
+    
+
+
+## Ex11
+ 
+`Fazer uma consulta (Query), onde traga o nome da pessoa, o email da pessoa, e o Estado que essa pessoa mora.`
+
+SELECT
+    ge.nome_estado,
+    gpe.nome_pessoa,
+    gpe.email_pessoa
+FROM
+         giu_estados ge
+    INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+    INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id;
+    
+
+ 
+## Ex12
+ 
+`Fazer uma consulta (Query), onde traga todas as pessoas que terminam com A no brasil`
+ 
+SELECT
+    gp.nome_pais, 
+    gpe.nome_pessoa
+FROM
+         giu_paises gp
+    INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+    INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+    INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+    WHERE (gpe.nome_pessoa LIKE '%A') AND (gp.nome_pais LIKE '%Brazil%');
+ 
+## Ex13
+ 
+`Fazer uma consulta (Query), onde traga a pessoa mais velha e a pessoa mais nova dentre todos os paises`
+ 
+## Ex14
+ 
+`Fazer uma consulta (Query), onde traga as pessoas que nao forem de Santa catarina, Sao paulo e Texas`
+ 
+ 
+## Ex15
+ 
+`Fazer uma consulta (Query), onde traga todas as pessoas do japão e que tenham mais de 35 anos`
+ 
+ 
+## Ex16
+ 
+`Fazer uma consulta (Query), onde traga quantas pessoas no japão tem o email do outlook.`
+ 
+ 
+ 
