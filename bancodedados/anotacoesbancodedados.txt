@@ -464,7 +464,6 @@ from ADRI_PAISES INNER JOIN adri_estados ON adri_estados.id_pais = adri_paises.p
 INNER JOIN adri_cidades ON adri_cidades.id_estado = adri_estados.estado_id 
 INNER JOIN adri_pessoas ON adri_pessoas.id_cidade = adri_cidades.cidade_id
  WHERE (ID_PAIS = 1))
- 
 
 ## Ex08
 `Fazer uma consulta (Query), onde traga o nome e o email pessoa mais nova do estado Rio grande do sul`
@@ -560,8 +559,6 @@ FROM
  
 `Fazer uma consulta (Query), onde traga a pessoa mais velha e a pessoa mais nova dentre todos os paises`
  
-
-
 SELECT
     MAX(idade),
     MIN(idade)
@@ -685,23 +682,39 @@ eu vou mostrar pra vcs como gerar o id automatico
 1  Selecione todos os campos da tabela produto
 SELECT * FROM giu_produto;
 
+
+
 2  Selecione todos os campos da tabela cliente
 SELECT * FROM giu_cliente;
+
+
+
 
 3  Selecione todos os campos da tabela vendas
 SELECT * FROM giu_vendas;
 
+
+
 4  Selecione o nome e a descrição de todos os produtos
 SELECT gp.nome_produto, gp.descricao_produto FROM giu_produto gp;
+
+
+
 
 5  Selecione o nome, a data de nascimento e a cidade de todos os clientes
 SELECT gc.nome, gc.data_nascimento, gc.cidade FROM giu_cliente gc;
 
+
+
+
 6  Selecione a data da venda e o ID do cliente e do produto para todas as vendas
 SELECT gv.data_venda,gv.fk_id_produto, gv.fk_id_cliente FROM giu_vendas gv;
 
-7  Selecione o nome do cliente e o nome do produto para todas as vendas
 
+
+
+
+7  Selecione o nome do cliente e o nome do produto para todas as vendas
 SELECT
     gv.id_venda,
     gc.nome,
@@ -712,8 +725,10 @@ FROM
     INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto;
 
     
-8  Selecione a data de cadastro e a descrição de todos os produtos cadastrados antes de uma determinada data (vc escolhe)
 
+
+
+8  Selecione a data de cadastro e a descrição de todos os produtos cadastrados antes de uma determinada data (vc escolhe)
 SELECT
     gp.data_cadastro
 FROM
@@ -724,8 +739,9 @@ FROM
     WHERE gp.data_cadastro < TO_DATE('04/12/2015', 'DD/MM/YYYY')
 
 
-9  Selecione o nome do cliente e a data de nascimento de todos os clientes com idade superior a 30 anos
 
+
+9  Selecione o nome do cliente e a data de nascimento de todos os clientes com idade superior a 30 anos
 SELECT
     gc.nome, gc.data_nascimento,
     TRUNC((SYSDATE - DATA_NASCIMENTO) /365) as idade
@@ -737,8 +753,11 @@ FROM
     WHERE TRUNC((SYSDATE - gc.data_nascimento) /365) > 20
 
 
-10  Selecione a quantidade de vendas realizadas em cada dia
 
+
+
+
+10  Selecione a quantidade de vendas realizadas em cada dia
 SELECT
   gv.data_venda,
   COUNT(gv.data_venda) as quantidade_de_vendas
@@ -751,8 +770,11 @@ FROM
 
 
 
-11  Selecione o nome do produto e a soma dos preços de todas as vendas desse produto
 
+
+
+
+11  Selecione o nome do produto e a soma dos preços de todas as vendas desse produto
 SELECT
     gp.nome_produto,
     SUM(gp.preco) AS precovendas
@@ -764,8 +786,10 @@ GROUP BY
 
 
 
-12  Selecione o nome do cliente e o nome do produto de todas as vendas.
 
+
+
+12  Selecione o nome do cliente e o nome do produto de todas as vendas.
 SELECT
     gv.id_venda,gc.nome, gp.nome_produto
 FROM
@@ -774,8 +798,11 @@ FROM
     INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto;
 
 
-13  Selecione o nome do cliente, a cidade e a data de nascimento de todos os clientes que compraram um produto.
 
+
+
+
+13  Selecione o nome do cliente, a cidade e a data de nascimento de todos os clientes que compraram um produto.
 SELECT
 gc.id_cliente,
     gc.nome,
@@ -786,17 +813,22 @@ FROM
     INNER JOIN giu_vendas gv ON gv.fk_id_cliente = gc.id_cliente;
     
 
+
+
 14  Selecione o nome do produto, a descrição do produto e a quantidade vendida de todos os produtos.
 
-
 SELECT
-    gp.nome_produto,
+    gp.nome_produto, gp.descricao_produto,
     COUNT(gv.fk_id_produto) AS qt_venda_por_produto    
 FROM
          giu_produto gp
     INNER JOIN giu_vendas gv ON gv.fk_id_produto = gp.id_produto
 GROUP BY
-    gp.nome_produto;
+    gp.nome_produto,gp.descricao_produto;
+
+
+
+
 
 15  Selecione o nome do cliente, a cidade e o total gasto em compras pelo cliente
 
@@ -809,3 +841,58 @@ FROM
 GROUP BY
     gc.nome, gc.cidade;
 
+16. Selecione a Quantidade de vendas por cliente 
+
+SELECT
+    gc.nome,
+    COUNT(gv.id_venda) AS total_vendas_por_cliente
+FROM
+         giu_cliente gc
+    INNER JOIN giu_vendas  gv ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto
+GROUP BY
+    gc.nome;
+
+
+
+17. Selecione quais clientes ja compraram alguma coisa
+
+SELECT
+    gc.nome
+FROM
+         giu_cliente gc
+    INNER JOIN giu_vendas gv ON gv.fk_id_cliente = gc.id_cliente
+    group BY gc.nome;
+
+
+
+18. Selecione quais clientes nao compraram nada
+
+SELECT
+    gc.nome,gc.id_cliente
+FROM
+    giu_cliente gc
+    LEFT JOIN giu_vendas gv ON gc.id_cliente = gv.fk_id_cliente WHERE    gv.fk_id_cliente IS NULL
+GROUP BY
+    gc.nome,gc.id_cliente;
+
+19. Selecione qual o produto mais comprado e o menos comprado
+
+    
+SELECT
+    nome_produto,
+    COUNT(*) AS contador
+FROM
+         giu_vendas
+    INNER JOIN giu_produto ON (giu_produto.id_produto = giu_vendas.fk_id_produto)
+GROUP BY
+    nome_produto
+ORDER BY
+    contador DESC,
+    nome_produto DESC
+OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
+
+
+
+
+20. Selecione quais produtos foram comprados mais de 5 vezes 
