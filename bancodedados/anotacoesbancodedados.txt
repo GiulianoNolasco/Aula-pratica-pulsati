@@ -761,8 +761,51 @@ FROM
     INNER JOIN giu_vendas gv ON gv.fk_id_cliente = gp.id_produto
 GROUP BY
     gp.nome_produto;
-    
+
+
+
 12  Selecione o nome do cliente e o nome do produto de todas as vendas.
+
+SELECT
+    gv.id_venda,gc.nome, gp.nome_produto
+FROM
+         giu_vendas gv
+    INNER JOIN giu_cliente gc ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto;
+
+
 13  Selecione o nome do cliente, a cidade e a data de nascimento de todos os clientes que compraram um produto.
+
+SELECT
+gc.id_cliente,
+    gc.nome,
+    gc.cidade,
+    gc.data_nascimento
+FROM
+         giu_cliente gc
+    INNER JOIN giu_vendas gv ON gv.fk_id_cliente = gc.id_cliente;
+    
+
 14  Selecione o nome do produto, a descrição do produto e a quantidade vendida de todos os produtos.
-15  Selecione o nome do cliente, a cidade e o total gasto em compras pelo 
+
+
+SELECT
+    gp.nome_produto,
+    COUNT(gv.fk_id_produto) AS qt_venda_por_produto    
+FROM
+         giu_produto gp
+    INNER JOIN giu_vendas gv ON gv.fk_id_produto = gp.id_produto
+GROUP BY
+    gp.nome_produto;
+
+15  Selecione o nome do cliente, a cidade e o total gasto em compras pelo cliente
+
+SELECT gc.nome, gc.cidade, 
+SUM(gp.preco) AS total_gasto_cliente
+FROM
+             giu_cliente gc
+        INNER JOIN giu_vendas  gv ON gv.fk_id_cliente = gc.id_cliente
+        INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto
+GROUP BY
+    gc.nome, gc.cidade;
+
