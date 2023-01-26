@@ -71,6 +71,16 @@ Ex 08
 Faça um select (Query) que traga a pessoa que tenha um id igual a 33
 SELECT * FROM GIU_USUARIOS WHERE ID LIKE 33;
 
+SELECT
+    gp.data_cadastro
+FROM
+         giu_vendas gv
+    INNER JOIN giu_cliente gc ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto
+    
+    WHERE gp.data_cadastro < TO_DATE('04/12/2015', 'DD/MM/YYYY')
+
+
 Ex 09
 Faça um select (Query) onde traga o id e a data de nascimento das pessoas onde o nome termine com O OU o email da pessoa contenha @outlook.com ou a data de nascimento esteja em 10/07/1987 ou 26/07/2022
 SELECT ID,DATA_NASCIMENTO FROM GIU_USUARIOS WHERE nome LIKE '%O' OR EMAIL LIKE '%@outlook.com%';
@@ -138,8 +148,8 @@ CREATE TABLE giu_funcionarios(
     salario
 ) VALUES (
     '14',
-    'BOLSONARO',
-    'CAPITAO',
+    'TESTE',
+    'TESTE',
     '14/05/1877',
     '006.193.949-13',
     '47859951',
@@ -335,15 +345,12 @@ CONSTRAINT id_cidade_giu_fk FOREIGN KEY (fk_id_cidade) REFERENCES giu_cidades(ci
 );
 
  
-
-
 Insira registros em todas as tabelas
  
 
  
  
 ## Ex01
- 
 `Fazer uma consulta (Query), onde traga o email da pessoa, e de qual Cidade essa pessoa pertence.`
  
 SELECT
@@ -360,7 +367,6 @@ FROM
 
  
 ## Ex02
- 
 `Fazer uma consulta (Query), onde traga quantas pessoas estão cadastradas em cada pais`
  
 SELECT
@@ -377,7 +383,6 @@ GROUP BY gp.nome_pais;
 
 
 ## Ex03
- 
 `Fazer um consulta (Query), onde traga quantas pessoas estão cadastradas em cada cidade`
  
 SELECT
@@ -392,7 +397,6 @@ GROUP BY  gc.nome_cidade;
 
 
 ## Ex04
- 
 `Fazer uma consulta (Query), onde traga quantas pessoas estão cadastradas em cada estado`
 
 SELECT
@@ -408,7 +412,6 @@ GROUP BY ge.nome_estado;
 
 
 ## Ex05
- 
 `Fazer uma consulta (Query), onde traga qual é o nome e o código dos paises cadastrados.`
  
 SELECT
@@ -422,9 +425,7 @@ FROM
 
 
 ## Ex06
- 
 `Fazer uma consulta (Query), onde traga todas as pessoas que moram no pais com Id 3 e que nasceram depois do dia 01/01/2000 e que o email contenha @gmail.com`
- 
  
 SELECT
      gpe.nome_pessoa,gpe.data_nascimento,gpe.email_pessoa, gp.nome_pais,gp.pais_id
@@ -438,7 +439,6 @@ AND (gpe.email_pessoa LIKE '%@gmail.com%');
  
  
 ## Ex07
- 
 `Fazer uma consulta (Query), onde traga a pessoa mais velha do pais com id 1`
  
 SELECT MAX(idade) FROM (
@@ -456,28 +456,36 @@ SELECT MAX(idade) FROM (
         gp.pais_id = 3
 );
 
-
-
-    SELECT
-        gpe.nome_pessoa,
-        trunc((sysdate - gpe.data_nascimento) / 365) AS idade,
-                gp.nome_pais,
-        gp.pais_id
-    FROM
-             giu_paises gp
-        INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
-        INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
-        INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
-    WHERE
-        gp.pais_id = 3;
+ ouuuuuuuuuuuuuuuuuuuu
+adri fez 
+SELECT data_nascimento, nome_pessoa from ADRI_pessoas 
+where data_nascimento = (SELECT min(data_nascimento) 
+from ADRI_PAISES INNER JOIN adri_estados ON adri_estados.id_pais = adri_paises.pais_id 
+INNER JOIN adri_cidades ON adri_cidades.id_estado = adri_estados.estado_id 
+INNER JOIN adri_pessoas ON adri_pessoas.id_cidade = adri_cidades.cidade_id
+ WHERE (ID_PAIS = 1))
  
+
 ## Ex08
- 
 `Fazer uma consulta (Query), onde traga o nome e o email pessoa mais nova do estado Rio grande do sul`
- 
+
+SELECT gpe.nome_pessoa, gpe.email_pessoa,gpe.data_nascimento,ge.nome_estado FROM giu_pessoas gpe 
+
+INNER JOIN giu_cidades gc ON gpe.fk_id_cidade = gc.cidade_id
+INNER JOIN giu_estados ge ON gc.fk_id_estado = ge.estado_id
+
+WHERE  (data_nascimento = (SELECT MAX(data_nascimento) FROM giu_pessoas gpe
+
+INNER JOIN giu_cidades gc ON gpe.fk_id_cidade = gc.cidade_id
+INNER JOIN giu_estados ge ON gc.fk_id_estado = ge.estado_id
+
+WHERE (ge.nome_estado LIKE '% Sao Paulo %')));
+
+
+
+
  
 ## Ex09
- 
 `Fazer uma consulta (Query), onde traga o nome da pessoa, nome da cidade, nome do estado, e nome do pais das pessoas com mais de 30 anos UTILIZAR DATEDIFF NO WHERE`
  
 SELECT
@@ -499,7 +507,6 @@ WHERE
 
 
 ## Ex10
- 
 `Fazer uma consulta (Query), onde traga o nome da pessoa, nome da cidade, nome do estado, e nome do pais das pessoas com menos de 20 anos UTILIZAR DATEDIFF NO WHERE`
  
 SELECT
@@ -553,19 +560,209 @@ FROM
  
 `Fazer uma consulta (Query), onde traga a pessoa mais velha e a pessoa mais nova dentre todos os paises`
  
+
+
+SELECT
+    MAX(idade),
+    MIN(idade)
+FROM
+    (
+        SELECT
+            gpe.nome_pessoa,
+            trunc((sysdate - gpe.data_nascimento) / 365) AS idade,
+            gp.nome_pais,
+            gp.pais_id
+        FROM
+                 giu_paises gp
+            INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+            INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+            INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+    );
+
+
+
 ## Ex14
  
 `Fazer uma consulta (Query), onde traga as pessoas que nao forem de Santa catarina, Sao paulo e Texas`
  
+SELECT
+    gp.nome_pais,
+    gpe.nome_pessoa,
+    ge.nome_estado
+FROM
+         giu_paises gp
+    INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+    INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+    INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+    WHERE ge.nome_estado != ' Cairo ' AND ge.nome_estado != ' Jining ' AND ge.nome_estado != ' Kuala Lumpur '
+    
+        
  
 ## Ex15
  
 `Fazer uma consulta (Query), onde traga todas as pessoas do japão e que tenham mais de 35 anos`
  
+
+SELECT
+    gp.nome_pais,
+    TRUNC((SYSDATE - gpe.data_nascimento) /365) as idade,
+    gpe.nome_pessoa
+FROM
+         giu_paises gp
+    INNER JOIN giu_estados ge ON ge.fk_id_pais = gp.pais_id
+    INNER JOIN giu_cidades gc ON gc.fk_id_estado = ge.estado_id
+    INNER JOIN giu_pessoas gpe ON gpe.fk_id_cidade = gc.cidade_id
+    WHERE gp.nome_pais = ' Japan ' AND TRUNC((SYSDATE - gpe.data_nascimento) /365)>30;
+        
+
  
 ## Ex16
  
 `Fazer uma consulta (Query), onde traga quantas pessoas no japão tem o email do outlook.`
  
- 
- 
+SELECT COUNT(*) FROM giu_pessoas gpe 
+
+INNER JOIN giu_cidades gc ON gpe.fk_id_cidade = gc.cidade_id
+INNER JOIN giu_estados ge ON gc.fk_id_estado = ge.estado_id
+INNER JOIN giu_paises gp ON ge.fk_id_pais = gp.pais_id
+
+WHERE gp.nome_pais LIKE '% Japan %';
+
+
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+ generated by defal as identid
+
+
+dontpad.com
+(come o +)
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+CREATE TABLE giu_produto (
+    id_produto       NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY
+    nome_produto      VARCHAR2(255) NOT NULL,
+    descricao_produto VARCHAR2(4000) NOT NULL,
+    codigo_produto    VARCHAR2(20) NOT NULL,
+    data_cadastro     DATE DEFAULT sysdate
+);
+
+CREATE TABLE giu_cliente (
+    id_cliente     NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY
+    nome            VARCHAR2(255) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    cpf             VARCHAR2(14) NOT NULL,
+    cidade          VARCHAR2(20) NOT NULL
+);
+
+CREATE TABLE giu_vendas (
+    id_venda      NUMBER
+        GENERATED BY DEFAULT AS IDENTITY,
+    data_venda    DATE DEFAULT sysdate,
+    fk_id_cliente NUMBER,
+    fk_id_produto NUMBER,
+    CONSTRAINT giu_fk_id_cliente FOREIGN KEY ( fk_id_cliente )
+        REFERENCES giu_cliente ( id_cliente ),
+    CONSTRAINT giu_fk_id_produto FOREIGN KEY ( fk_id_produto )
+        REFERENCES giu_produto ( id_produto )
+);
+[08:27] Johnny Blasius Seubert
+criar essas tabelas, gerar uns 20 registros para cada uma delas
+
+[08:28] Johnny Blasius Seubert
+eu vou mostrar pra vcs como gerar o id automatico
+
+
+
+
+1  Selecione todos os campos da tabela produto
+SELECT * FROM giu_produto;
+
+2  Selecione todos os campos da tabela cliente
+SELECT * FROM giu_cliente;
+
+3  Selecione todos os campos da tabela vendas
+SELECT * FROM giu_vendas;
+
+4  Selecione o nome e a descrição de todos os produtos
+SELECT gp.nome_produto, gp.descricao_produto FROM giu_produto gp;
+
+5  Selecione o nome, a data de nascimento e a cidade de todos os clientes
+SELECT gc.nome, gc.data_nascimento, gc.cidade FROM giu_cliente gc;
+
+6  Selecione a data da venda e o ID do cliente e do produto para todas as vendas
+SELECT gv.data_venda,gv.fk_id_produto, gv.fk_id_cliente FROM giu_vendas gv;
+
+7  Selecione o nome do cliente e o nome do produto para todas as vendas
+
+SELECT
+    gv.id_venda,
+    gc.nome,
+    gp.nome_produto
+FROM
+         giu_vendas gv
+    INNER JOIN giu_cliente gc ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto;
+
+    
+8  Selecione a data de cadastro e a descrição de todos os produtos cadastrados antes de uma determinada data (vc escolhe)
+
+SELECT
+    gp.data_cadastro
+FROM
+         giu_vendas gv
+    INNER JOIN giu_cliente gc ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto
+    
+    WHERE gp.data_cadastro < TO_DATE('04/12/2015', 'DD/MM/YYYY')
+
+
+9  Selecione o nome do cliente e a data de nascimento de todos os clientes com idade superior a 30 anos
+
+SELECT
+    gc.nome, gc.data_nascimento,
+    TRUNC((SYSDATE - DATA_NASCIMENTO) /365) as idade
+FROM
+         giu_vendas gv
+    INNER JOIN giu_cliente gc ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto
+    
+    WHERE TRUNC((SYSDATE - gc.data_nascimento) /365) > 20
+
+
+10  Selecione a quantidade de vendas realizadas em cada dia
+
+SELECT
+  gv.data_venda,
+  COUNT(gv.data_venda) as quantidade_de_vendas
+FROM
+         giu_vendas gv
+    INNER JOIN giu_cliente gc ON gv.fk_id_cliente = gc.id_cliente
+    INNER JOIN giu_produto gp ON gv.fk_id_produto = gp.id_produto
+    
+   GROUP BY gv.data_venda
+
+
+
+11  Selecione o nome do produto e a soma dos preços de todas as vendas desse produto
+
+SELECT
+    gp.nome_produto,
+    SUM(gp.preco) AS precovendas
+FROM
+         giu_produto gp
+    INNER JOIN giu_vendas gv ON gv.fk_id_cliente = gp.id_produto
+GROUP BY
+    gp.nome_produto;
+    
+12  Selecione o nome do cliente e o nome do produto de todas as vendas.
+13  Selecione o nome do cliente, a cidade e a data de nascimento de todos os clientes que compraram um produto.
+14  Selecione o nome do produto, a descrição do produto e a quantidade vendida de todos os produtos.
+15  Selecione o nome do cliente, a cidade e o total gasto em compras pelo 

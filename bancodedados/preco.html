@@ -326,19 +326,8 @@
       ];
       for (let y = 0; y < 100; y++) {
         document.write(
-          ` INSERT INTO giu_vendas(data_venda,fk_id_cliente,fk_id_produto)
-                VALUES ('${dataAleatoria()}',
-                '${
-                  fk_id_cliente[
-                    Math.floor(Math.random() * fk_id_cliente.length)
-                  ]
-                }',
-                '${
-                  fk_id_produto[
-                    Math.floor(Math.random() * fk_id_produto.length)
-                  ]
-                }'
-                ); <br>
+          ` 
+          UPDATE giu_produto SET preco ='${Math.floor(Math.random() * 100)+","+Math.floor(Math.random() * 100)}' WHERE id_produto = ${y};<br>
                 `
         );
         id++;
