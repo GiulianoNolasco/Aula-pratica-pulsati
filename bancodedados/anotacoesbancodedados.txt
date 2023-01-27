@@ -896,3 +896,352 @@ OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
 
 
 20. Selecione quais produtos foram comprados mais de 5 vezes 
+
+
+
+
+-
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+PL SQL
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+
+[09:26] Bradley Mafra
+DECLARE
+ 
+w_nome VARCHAR(250) := 'Bradley';
+w_idade NUMBER;
+ 
+BEGIN
+ 
+IF w_nome = 'Bradley' THEN
+    DBMS_OUTPUT.PUT_LINE('O nome é' || w_nome);
+    ELSIF w_nome = '' THEN
+    DBMS_OUTPUT.PUT_LINE('O nome está vazio');
+    ELSE
+    DBMS_OUTPUT.PUT_LINE('Nãoo sei o nome');
+    END IF;
+END;
+ 
+
+[09:30] Bradley Mafra
+DECLARE
+ 
+w_cpf VARCHAR(250) := '';
+w_idade NUMBER;
+ 
+BEGIN
+ 
+    SELECT cpf 
+    INTO w_cpf
+    FROM bradley_usuario 
+    WHERE id = 1;
+
+    DBMS_OUTPUT.PUT_LINE('O cpf encontrado foi: '||w_cpf);
+ 
+END;
+
+[09:35] Bradley Mafra
+DECLARE
+ 
+w_cpf VARCHAR(250) := '';
+w_nome VARCHAR(250) := '';
+w_idade NUMBER;
+ 
+BEGIN
+ 
+    SELECT cpf, nome
+    INTO w_cpf, w_nome
+    FROM bradley_usuario 
+    WHERE id = 1;
+
+    DBMS_OUTPUT.PUT_LINE('O cpf encontrado foi: '||w_cpf||' E o nome é: '||w_nome);
+ 
+END;
+ 
+
+[09:49] Bradley Mafra
+DECLARE
+ 
+w_cpf bradley_usuario.cpf%type;
+w_nome bradley_usuario.nome%type;
+w_sexo varchar2(20);
+ 
+BEGIN
+ 
+    FOR R IN (SELECT * FROM bradley_usuario)LOOP
+
+        SELECT
+            CASE
+                WHEN R.sexo = 'M' THEN 'Masculino'
+                WHEN R.sexo = 'F' THEN 'Feminino'
+                ELSE 'Não informado'
+            END
+        INTO w_sexo
+        FROM dual;
+
+
+        DBMS_OUTPUT.PUT_LINE('O nome da vez é' || R.nome);
+        DBMS_OUTPUT.PUT_LINE('O sexo da pessoa é: ' || w_sexo);
+    END LOOP;
+END;
+ 
+
+[10:16] Bradley Mafra
+DECLARE
+ 
+w_contagem NUMBER := 200;
+ 
+BEGIN
+ 
+    FOR indice IN 1..w_contagem LOOP
+            DBMS_OUTPUT.PUT_LINE(indice);
+    END LOOP;
+ 
+END;
+
+
+
+[11:14] Bradley Mafra
+CREATE OR REPLACE PROCEDURE bradley_procedure(p_id IN NUMBER)
+IS
+w_salario bradley_funcionarios.salario%type := 0;
+w_nome bradley_funcionarios.primeiro_nome%type;
+BEGIN
+ 
+    SELECT primeiro_nome, salario 
+    INTO w_nome, w_salario
+    FROM bradley_funcionarios
+    WHERE id = p_id;
+
+    IF w_salario <= 2000 THEN
+        DBMS_OUTPUT.PUT_LINE('O salario era: '|| w_salario);
+        w_salario := w_salario * 1.1;
+        UPDATE bradley_funcionarios
+            SET salario = w_salario
+            WHERE id = p_id;
+        DBMS_OUTPUT.PUT_LINE('O novo salario é: '|| w_salario);
+            ELSE
+            DBMS_OUTPUT.PUT_LINE('Não é possivel aumentar o salario');
+        END IF;
+ 
+END;
+ 
+SELECT * FROM bradley_funcionarios
+
+ 
+
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+
+
+1  Escreva um bloco PL/SQL que exiba "Número par" se o número for par e "Número ímpar" se for ímpar.
+ 
+2  Escreva um bloco PL/SQL que calcule e exiba a soma dos números pares entre 10 e 20.
+DECLARE
+    w_contagem NUMBER := 19;
+    w_soma
+number := 0;
+
+BEGIN
+    FOR indice IN 11..w_contagem LOOP
+        IF MOD(indice, 2) = 0 THEN
+            w_soma := w_soma + indice;
+        END IF;
+            dbms_output.put_line(w_soma);
+
+    END LOOP;
+
+    dbms_output.put_line(w_soma);
+END;
+
+
+3  Escreva um bloco PL/SQL que determine e exiba se um número é primo ou não.
+DECLARE
+    w_numero NUMBER := 88;
+    w_quantidadeDivisores NUMBER:=0;
+
+BEGIN
+
+    FOR indice IN 1..w_numero LOOP
+        IF MOD(w_numero, indice) = 0 THEN
+            w_quantidadeDivisores := w_quantidadeDivisores + 1;
+        END IF;
+
+    END LOOP;
+
+IF w_quantidadeDivisores !=2 THEN
+    dbms_output.put_line(w_numero||' Não é um número primo');
+    ELSE 
+        dbms_output.put_line(w_numero||' é um número primo');
+END IF;
+END;
+
+4  Escreva um bloco PL/SQL que calcule e exiba o fatorial de um número.
+DECLARE
+    w_numero            NUMBER := 10;
+    w_resultadofatorial NUMBER;
+    w_inicio            NUMBER;
+    w_fim               NUMBER;
+BEGIN
+    w_resultadofatorial := (w_numero * ( w_numero - 1 ));
+    w_inicio := ( w_numero - 1 );
+    w_fim := (w_numero-2);
+    
+    FOR indice IN 1..w_fim LOOP
+        w_resultadofatorial := w_resultadofatorial * indice;
+    END LOOP;
+
+    dbms_output.put_line('Resposta: ' || w_resultadofatorial);
+END;
+
+5  Escreva um bloco PL/SQL que calcule e exiba a soma dos números impares entre 1 e 100.
+DECLARE
+    w_contagem NUMBER := 99;
+    w_soma
+number := 0;
+
+BEGIN
+    FOR indice IN 1..w_contagem LOOP
+    
+        IF MOD(indice, 2) != 0 THEN
+            w_soma := w_soma + indice;
+                    dbms_output.put_line(indice);
+
+        END IF;
+
+    END LOOP;
+
+    dbms_output.put_line(w_soma);
+END;
+
+
+6  Escreva um bloco PL/SQL que exiba a tabuada de um número.
+
+DECLARE
+    w_numero NUMBER := 5;
+    w_resultado NUMBER;
+BEGIN
+    FOR indice IN 1..10 LOOP
+    w_resultado := w_numero*indice;
+    dbms_output.put_line(indice||' x '||w_numero|| ' = '|| w_resultado);
+
+    END LOOP;
+
+END;
+
+
+7  Escreva um bloco PL/SQL que calcule e exiba a média de uma tabela de números inteiros.
+
+DECLARE
+    w_soma    NUMBER;
+    w_media   NUMBER;
+    w_tamanho NUMBER;
+BEGIN
+    SELECT
+        COUNT(codigo_produto)
+    INTO w_tamanho
+    FROM
+        giu_produto;
+
+    SELECT
+        SUM(codigo_produto)
+    INTO w_soma
+    FROM
+        giu_produto;
+
+    w_media:= (w_soma/ w_tamanho);
+    dbms_output.put_line(w_media);
+END;
+
+
+8  Escreva um bloco PL/SQL que determine e exiba o maior número em uma tabela de números inteiros.
+DECLARE
+    w_maiorNumero    NUMBER;
+BEGIN
+   SELECT MAX(codigo_produto)INTO w_maiorNumero FROM giu_produto;
+
+    dbms_output.put_line(w_maiorNumero);
+END;
+
+9  Escreva um bloco PL/SQL que determine e exiba o menor número em uma tabela de números inteiros.
+
+DECLARE
+    w_menorNumero  NUMBER;
+BEGIN
+   SELECT MIN(id) INTO w_menorNumero FROM giu_usuarios;
+
+    dbms_output.put_line(w_menorNumero);
+END;
+
+10  Escreva um bloco PL/SQL que determine e exiba a quantidade de números pares e ímpares em uma tabela de números inteiros.
+
+DECLARE
+    w_somapar   NUMBER:=0;
+    w_somaimpar NUMBER:=0;
+BEGIN
+    FOR r IN (
+        SELECT
+            id_produto
+        FROM
+            giu_produto
+    ) LOOP
+        IF MOD(r.id_produto, 2) != 0 THEN
+            w_somaimpar := w_somaimpar + 1;
+        ELSE
+            w_somapar := w_somaimpar + 1;
+        END IF;
+    END LOOP;
+
+    dbms_output.put_line( w_somapar|| w_somaimpar);
+END;
+
+11  Escreva um bloco PL/SQL que determine e exiba a quantidade de caracteres vogais e consoantes em uma string.
+DECLARE
+    w_somavogais       NUMBER := 0;
+    w_somaconsoantes   NUMBER := 0;
+    w_string           VARCHAR2(100);
+    w_letraselecionada VARCHAR2(100);
+BEGIN
+    
+        SELECT
+            nome_produto
+        INTO w_string
+        FROM
+            giu_produto
+        WHERE
+            id_produto = 21;
+   
+   FOR indice IN 1..LENGTH(w_string) LOOP
+        w_letraselecionada := substr(w_string, indice, 1);
+        IF w_letraselecionada = 'A' OR w_letraselecionada = 'E'OR w_letraselecionada = 'I'OR w_letraselecionada = 'O'OR w_letraselecionada = 'U' THEN
+            w_somavogais := w_somavogais + 1;
+        ELSE
+        END IF;
+    dbms_output.put_line(w_letraselecionada);
+
+    END LOOP;
+
+    dbms_output.put_line(w_somavogais || w_somaconsoantes);
+END;
+
+
+12  Escreva um bloco PL/SQL que determine e exiba se um ano é bissexto ou não.
+13  Escreva uma procedure PL/SQL que determine e exiba se uma string é palíndrome ou não.
+14  Escreva uma função PL/SQL que determine e retorne a quantidade de caracteres vogais em uma string específica.
+15  Escreva um procedimento PL/SQL que calcule e exiba a média de uma tabela de números específica.
+16  Escreva um procedimento PL/SQL que determine e exiba o maior e menor número em uma tabela de números específica.
+17  Escreva uma função PL/SQL que calcule e retorne a soma dos números pares entre dois números específicos.
+
