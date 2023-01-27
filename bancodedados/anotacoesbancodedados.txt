@@ -1049,6 +1049,8 @@ SELECT * FROM bradley_funcionarios
 
 1  Escreva um bloco PL/SQL que exiba "Número par" se o número for par e "Número ímpar" se for ímpar.
  
+
+
 2  Escreva um bloco PL/SQL que calcule e exiba a soma dos números pares entre 10 e 20.
 DECLARE
     w_contagem NUMBER := 19;
@@ -1066,6 +1068,9 @@ BEGIN
 
     dbms_output.put_line(w_soma);
 END;
+
+
+
 
 
 3  Escreva um bloco PL/SQL que determine e exiba se um número é primo ou não.
@@ -1089,6 +1094,9 @@ IF w_quantidadeDivisores !=2 THEN
 END IF;
 END;
 
+
+
+
 4  Escreva um bloco PL/SQL que calcule e exiba o fatorial de um número.
 DECLARE
     w_numero            NUMBER := 10;
@@ -1106,6 +1114,9 @@ BEGIN
 
     dbms_output.put_line('Resposta: ' || w_resultadofatorial);
 END;
+
+
+
 
 5  Escreva um bloco PL/SQL que calcule e exiba a soma dos números impares entre 1 e 100.
 DECLARE
@@ -1128,6 +1139,8 @@ BEGIN
 END;
 
 
+
+
 6  Escreva um bloco PL/SQL que exiba a tabuada de um número.
 
 DECLARE
@@ -1141,6 +1154,8 @@ BEGIN
     END LOOP;
 
 END;
+
+
 
 
 7  Escreva um bloco PL/SQL que calcule e exiba a média de uma tabela de números inteiros.
@@ -1167,6 +1182,10 @@ BEGIN
 END;
 
 
+
+
+
+
 8  Escreva um bloco PL/SQL que determine e exiba o maior número em uma tabela de números inteiros.
 DECLARE
     w_maiorNumero    NUMBER;
@@ -1175,6 +1194,10 @@ BEGIN
 
     dbms_output.put_line(w_maiorNumero);
 END;
+
+
+
+
 
 9  Escreva um bloco PL/SQL que determine e exiba o menor número em uma tabela de números inteiros.
 
@@ -1185,6 +1208,11 @@ BEGIN
 
     dbms_output.put_line(w_menorNumero);
 END;
+
+
+
+
+
 
 10  Escreva um bloco PL/SQL que determine e exiba a quantidade de números pares e ímpares em uma tabela de números inteiros.
 
@@ -1208,6 +1236,9 @@ BEGIN
     dbms_output.put_line( w_somapar|| w_somaimpar);
 END;
 
+
+
+
 11  Escreva um bloco PL/SQL que determine e exiba a quantidade de caracteres vogais e consoantes em uma string.
 DECLARE
     w_somavogais       NUMBER := 0;
@@ -1229,18 +1260,83 @@ BEGIN
         IF w_letraselecionada = 'A' OR w_letraselecionada = 'E'OR w_letraselecionada = 'I'OR w_letraselecionada = 'O'OR w_letraselecionada = 'U' THEN
             w_somavogais := w_somavogais + 1;
         ELSE
+        w_somaconsoantes:= w_somaconsoantes+1;
         END IF;
-    dbms_output.put_line(w_letraselecionada);
 
     END LOOP;
+    dbms_output.put_line(w_string);
+    dbms_output.put_line('O total de vogais é: ' ||w_somavogais);
+    dbms_output.put_line('O total de consoantes é: ' || w_somaconsoantes);
 
-    dbms_output.put_line(w_somavogais || w_somaconsoantes);
 END;
 
 
+
+
 12  Escreva um bloco PL/SQL que determine e exiba se um ano é bissexto ou não.
+
+DECLARE
+    w_ano NUMBER := 2023;
+BEGIN
+           
+     IF (MOD(w_ano,4) = 0 AND MOD(w_ano,100)!=0) OR MOD(w_ano,400) = 0 THEN
+   
+    dbms_output.put_line('O ano é Bissexto');
+        ELSE
+    dbms_output.put_line('O ano NÃO é Bissexto');
+        END IF;
+
+END;
+
+
+
 13  Escreva uma procedure PL/SQL que determine e exiba se uma string é palíndrome ou não.
+
+CREATE OR REPLACE PROCEDURE giu_procedure_palindrome_giu_usuarios (
+    p_id IN NUMBER
+) IS
+    w_nome        VARCHAR2(4000);
+    w_nomereverse VARCHAR2(4000);
+BEGIN
+    SELECT
+        nome
+    INTO w_nome
+    FROM
+        giu_funcionarios
+    WHERE
+        id = p_id;
+
+    w_nomereverse := reverse(w_nomereverse);
+    IF w_nome = w_nomereverse THEN
+        dbms_output.put_line(w_nomereverse || ' É uma palavra Palíndroma.');
+    ELSE
+        dbms_output.put_line(w_nomereverse || ' NÃO é uma palavra Palíndroma.');
+    END IF;
+
+END;
+
+
+DECLARE
+BEGIN
+giu_procedure_palindrome_giu_usuarios(10);
+
+END;
+
+
+
+
+
+
 14  Escreva uma função PL/SQL que determine e retorne a quantidade de caracteres vogais em uma string específica.
+falta Fazer
+
+
+
+
+
+
+
+
 15  Escreva um procedimento PL/SQL que calcule e exiba a média de uma tabela de números específica.
 16  Escreva um procedimento PL/SQL que determine e exiba o maior e menor número em uma tabela de números específica.
 17  Escreva uma função PL/SQL que calcule e retorne a soma dos números pares entre dois números específicos.
