@@ -1368,6 +1368,333 @@ SELECT quantidade_de_vogais(12) FROM giu_usuarios;
 
 
 15  Escreva um procedimento PL/SQL que calcule e exiba a média de uma tabela de números específica.
+create or replace NONEDITIONABLE PROCEDURE giu_procedure_media_giu_produto 
+IS
+   w_soma    NUMBER;
+    w_media   NUMBER;
+    w_tamanho NUMBER;
+BEGIN
+   SELECT
+    COUNT(codigo_produto)
+    INTO w_tamanho
+    FROM
+        giu_produto;
+
+    SELECT
+    SUM(codigo_produto)
+    INTO w_soma
+    FROM
+        giu_produto;
+
+    w_media:= (w_soma/ w_tamanho);
+    dbms_output.put_line(w_media);
+
+END;
+
+
+
 16  Escreva um procedimento PL/SQL que determine e exiba o maior e menor número em uma tabela de números específica.
+create or replace NONEDITIONABLE PROCEDURE giu_procedure_maior_e_menor_numero (
+    nome_coluna IN VARCHAR2
+) IS
+    w_maior_numero NUMBER;
+    w_menor_numero NUMBER;
+BEGIN
+    SELECT
+        MAX(nome_coluna)
+    INTO w_maior_numero
+    FROM
+        giu_produto;
+
+    SELECT
+        MIN(nome_coluna)
+    INTO w_menor_numero
+    FROM
+        giu_produto;
+
+    dbms_output.put_line(w_maior_numero);
+    dbms_output.put_line(w_menor_numero);
+END;
+
+giu_procedure_maior_e_menor_numero('codigo_produto');
+// ver porque dá erro....
+
+
+
+
 17  Escreva uma função PL/SQL que calcule e retorne a soma dos números pares entre dois números específicos.
 
+CREATE OR REPLACE NONEDITIONABLE FUNCTION giu_soma_numeros_pares (
+    p_numero_inicial IN NUMBER,
+    p_numero_final   IN NUMBER
+) RETURN NUMBER 
+IS
+  w_soma NUMBER:= 0;
+BEGIN
+    FOR indice IN p_numero_inicial..p_numero_final LOOP
+        IF MOD(indice, 2) = 0 THEN
+            w_soma := w_soma + indice;
+        END IF;
+    END LOOP;
+
+    RETURN w_soma;
+    
+END;
+
+
+declare
+
+begin
+dbms_output.put_line(giu_soma_numeros_pares(10,20));
+end;
+
+
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+PACKAGE
+
+
+[09:16] Bradley Mafra
+CREATE OR REPLACE PACKAGE BODY pkg_bradley AS FUNCTION somar(p_n1 NUMBER, p_n2 NUMBER) RETURN NUMBER IS
+    BEGIN
+        RETURN p_n1 + p_n2;
+        END somar; FUNCTION subtrair(p_n1 NUMBER, p_n2 NUMBER) RETURN NUMBER IS
+    BEGIN
+        RETURN p_n1 + p_n2;
+        END subtrair; -- FUNCTION somar(p_n1 NUMBER, p_n2 NUMBER) RETURN NUMBER;
+-- FUNCTION subtrair(p_n1 NUMBER, p_n2 NUMBER) RETURN NUMBER; END pkg_bradley;
+
+[09:17] Bradley Mafra
+DECLARE
+W_RESULTADO NUMBER; BEGIN W_RESULTADO := pkg_bradley.somar(2,4);
+DBMS_OUTPUT.PUT_LINE(w_resultado); END;
+
+
+#########################################################################################################################
+#########################################################################################################################
+#########################################################################################################################
+
+create or replace NONEDITIONABLE TRIGGER giu_trigger_giu_produto_maiusculo_minusculo
+BEFORE INSERT OR UPDATE ON giu_produto
+FOR EACH ROW
+
+DECLARE
+
+
+BEGIN
+
+IF INSERTING THEN
+        :NEW.nome_produto := UPPER(:NEW.nome_produto);
+END IF;
+
+IF UPDATING THEN 
+        :NEW.nome_produto := LOWER(:NEW.nome_produto);
+END IF;
+
+END;
+
+_________________________
+UPDATE giu_produto SET nome_produto = 'MONItor' where id_produto = 1;
+
+INSERT INTO giu_produto (nome_produto,descricao_produto,codigo_produto,data_cadastro,preco)
+VALUES ('MoniTOR', 'ver coisas', 100, '30/01/2023', 125);
+
+
+select * from giu_produto;
+
+
+_____________________________________________________________________________________________________________________________
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER giu_trigger_giu_vendas_validador BEFORE
+    INSERT ON giu_vendas
+    FOR EACH ROW
+DECLARE BEGIN
+
+    IF :new.fk_id_cliente > 60 THEN
+        raise_application_error(-20001, 'ERRO, ID INEXISTENTE EM CLIENTES');
+    END IF;
+
+    IF :new.fk_id_produto > 23 THEN
+        raise_application_error(-20001, 'ERRO, ID INEXISTENTE EM PRODUTOS');
+    END IF;
+
+END;
+
+insert into giu_vendas (data_venda,fk_id_cliente,fk_id_produto) values ('30/01/2023',49,10);
+_____________________________________________________________________________________________________________________________
+
+
+
+1  Crie uma trigger para inserir automaticamente a data de criação da cidade Quando for inserido um novo registro na tabela "cidades".
+
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER giu_cidades_inserir_data_automaticamente BEFORE
+    INSERT OR UPDATE ON giu_cidades
+    FOR EACH ROW
+DECLARE BEGIN
+    
+        :new.data := SYSDATE;
+    
+END;
+
+insert into giu_cidades (cidade_id, nome_cidade,fk_id_estado,data) values (103,'teste',1,'');
+
+
+
+
+
+
+
+
+
+
+
+2  Crie uma trigger para impedir a inserção de cidades com nome repetido na tabela "cidades".
+
+CREATE OR REPLACE NONEDITIONABLE TRIGGER giu_cidades_impedir_cidade_duplicada BEFORE
+   create or replace NONEDITIONABLE TRIGGER giu_cidades_impedir_cidade_duplicada BEFORE
+    INSERT OR UPDATE ON giu_cidades
+    FOR EACH ROW
+DECLARE BEGIN
+    FOR r IN (
+        SELECT
+            nome_cidade
+        FROM
+            giu_cidades
+    ) LOOP
+        IF  r.nome_cidade = :new.nome_cidade 
+        THEN
+            raise_application_error(-20001, 'CIDADE JÁ EXISTENTE');
+        END IF;
+    END LOOP;
+
+END;
+
+
+INSERT INTO giu_cidades (cidade_id, nome_cidade,fk_id_estado) values (121, ' Abū Ḩulayaafah ',34);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3  Crie um pacote PL/SQL para retornar todas as cidades de um determinado estado.
+
+    FUNCTION mostrar_cidades (
+        id_informado NUMBER
+    ) RETURN VARCHAR2 IS
+        w_nome_cidade VARCHAR2(4000);
+    BEGIN
+       
+            SELECT
+                nome_cidade
+            INTO w_nome_cidade
+            FROM
+                giu_cidades
+            WHERE
+               fk_id_estado = id_informado;
+                return w_nome_cidade;
+       
+    END mostrar_cidades;
+
+
+
+declare
+
+begin
+ dbms_output.put_line(pkg_giu.mostrar_cidades(2));
+end;
+
+
+
+
+
+
+
+
+
+4  Crie um pacote PL/SQL para retornar o nome do país a partir do id do estado na tabela "estado".
+create or replace NONEDITIONABLE PACKAGE body giu_pkg_4 AS
+    FUNCTION retorna_pais (id_estado NUMBER) RETURN VARCHAR2 
+    IS
+        w_pais VARCHAR2(4000):='';
+    BEGIN
+        SELECT
+            nome_pais
+        INTO w_pais
+        FROM 
+        giu_paises
+        INNER JOIN giu_estados ON giu_paises.pais_id = giu_estados.fk_id_pais
+        WHERE
+            estado_id=id_estado;
+
+        RETURN w_pais;
+        
+    END retorna_pais;
+
+END giu_pkg_4;
+
+
+------------------------------------------
+
+create or replace NONEDITIONABLE PACKAGE giu_pkg_4 AS
+    FUNCTION retorna_pais (
+        id_estado NUMBER
+    ) RETURN VARCHAR2;
+
+END giu_pkg_4;
+
+
+
+
+5 Crie um gatilho para atualizar o nome do país automaticamente na tabela "cidades" quando for alterado na tabela "países".
+Não tem como. tabelas independentes.
+create or replace NONEDITIONABLE PACKAGE body GIU_PKG_6 AS 
+
+FUNCTION retorna_quantidade_estados (
+    id_est NUMBER
+) RETURN NUMBER IS
+    w_quantidade_estados NUMBER;
+BEGIN
+
+
+
+         SELECT
+            COUNT(*)
+        INTO w_pais
+        FROM 
+        giu_paises
+        INNER JOIN giu_estados ON giu_paises.pais_id = giu_estados.fk_id_pais
+        WHERE
+            estado_id=id_estado;
+
+        RETURN w_pais;
+        
+        
+        
+        
+        
+RETURN id_est;
+END retorna_quantidade_estados;
+
+END GIU_PKG_6;
+
+
+6 Crie um pacote PL/SQL para retornar a quantidade de cidades por estado.
+
+•  Crie um gatilho para impedir a exclusão de estados que possuam cidades na tabela "estado".
+•  Crie um pacote PL/SQL para retornar o nome de todas as cidades de um determinado país.
+•  Crie um gatilho para atualizar o nome do estado automaticamente na tabela "cidades" quando for alterado na tabela "estado".
+•  Crie um pacote PL/SQL para retornar a quantidade de cidades por país.
